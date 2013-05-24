@@ -35,3 +35,6 @@ This directory contains the following files and subdirectories:
                These scripts require knowledge of python and are primarily only useful for developers who a modifying the javascript source code.
                These script have not been tested thourghly, so please use with caution.
 
+You can checkout the full source code with:
+
+git clone --recursive git://github.com/geomoose/geomoose.git
