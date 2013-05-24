@@ -1,0 +1,96 @@
+MAP
+	NAME 'mn_county'
+	SIZE 800 650
+	STATUS ON
+	EXTENT 189783.560000 4816309.330000 761653.524114 5472346.500000
+	UNITS METERS
+	FONTSET '/opt/geomoose/geomoose/moose2-trunk/maps/fonts/fontset.list'
+	SYMBOLSET '/opt/geomoose/geomoose/moose2-trunk/maps/symbols/symbol.sym'
+	TRANSPARENT TRUE
+	IMAGETYPE PNG
+
+	QUERYMAP
+		STATUS ON
+		STYLE SELECTED
+	END
+
+	WEB
+		INCLUDE "/opt/geomoose/geomoose/moose2-trunk/maps/temp_directory.map"
+		METADATA
+			'ows_enable_request' '*'
+		END
+	END
+
+	LEGEND
+	    STATUS ON
+	END
+
+	PROJECTION
+		'+init=epsg:26915'
+	END
+
+
+	LAYER # County Boundary Polygon Outline Layer
+	    NAME 'county_borders'
+	    DATA './county.shp'
+	    STATUS DEFAULT
+	    TYPE LINE
+	    MINSCALE 1000
+		PROJECTION
+			'+init=epsg:26915'
+		END
+
+	    SYMBOLSCALE 200000
+	      CLASS
+	         NAME "County Boundary"
+	         STYLE
+	           SYMBOL 'circle'
+                   SIZE 3
+                   MINSIZE 3
+                   MAXSIZE 5
+                   COLOR 210 210 210
+	         END
+	         STYLE
+	           SYMBOL 'countydashed'
+                   SIZE 1
+                   MINSIZE 1
+                   MAXSIZE 3
+                   # WIDTH 1
+                   COLOR 50 50 50
+	         END
+	      END
+  END # County Boundary Polygon Layer
+
+  LAYER
+#    NAME 'county_borders'
+    DATA './county.shp'
+    STATUS DEFAULT
+    TYPE ANNOTATION
+    MINSCALE 1000
+    SYMBOLSCALE 200000
+    LABELMAXSCALE 2000000
+    LABELMINSCALE 100000
+    LABELITEM 'COUNTYNAME'
+    LABELCACHE ON
+    CLASS
+      STYLE
+        COLOR -1 -1 -1
+      END
+      LABEL
+	TYPE TRUETYPE
+	FONT vera_sans-bold
+	FORCE TRUE
+	MINSIZE 11
+	SIZE 11
+	MAXSIZE 13
+	# ANTIALIAS TRUE
+	COLOR 0 0 0
+	OUTLINECOLOR 232 232 232
+	BUFFER 4
+      END
+    END
+  END
+
+
+END ## end Map
+

@@ -1,0 +1,22 @@
+<feature-report>
+	<!-- query informtion -->
+	<query item="PIN" string="%qstring%"/>
+
+	<!-- This is the template -->
+	<template>parcel_template.pdf</template>
+
+	<!-- this is the location of the map in the template -->
+	<map x="0.92" y="2.18" w="6.69" h="3.68"/>
+
+	<!-- This is a list of where the fields are to be printed on the template -->
+	<fields>
+		<field x=".5" y="7.25" src="%PIN%" title="Parcel No.:"/>
+		<field x=".5" y="7.45" src="%OWNER_NAME%" title="Owner Name:"/>
+		<field x=".5" y="7.65" src="%BLDG_NUM% %STREETNAME% %STREETTYPE% %SUFFIX_DIR%" title="Address 1:"/>
+		<field x=".5" y="7.85" src="%CITY%, MN %ZIP%" title="Address 2:"/>
+
+		<field x=".5" y="8.25" src="%EMV_TOTAL%" title="Estimated Value:" format='%0.2f'/>
+		<field x=".5" y="8.45" src="%DWELL_TYPE%" title="Dwelling Type:"/>
+		<field x=".5" y="8.65" src="%HOME_STYLE%" title="Home Style:"/>
+	</fields>
+</feature-report>

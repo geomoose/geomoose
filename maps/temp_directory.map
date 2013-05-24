@@ -1,0 +1,6 @@
+# This file is used to configure temporary directories for Mapserver Mapfile
+
+IMAGEPATH "/tmp/www/"
+
+# Remove the "#" before the next "IMAGEPATH" statement if you are using MS4W
+# IMAGEPATH "/ms4w/tmp/ms_tmp/"

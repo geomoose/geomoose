@@ -1,0 +1,142 @@
+MAP
+	NAME 'basemap'
+	SIZE 800 650
+	STATUS ON
+	EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
+        UNITS METERS
+
+	INCLUDE "../../geomoose_globals.map"
+
+	WEB
+		METADATA
+			'ows_title' 'County'
+			'ows_srs' 'EPSG:26915 EPSG:4326 EPSG:900913 EPSG:3857'
+			'ows_enable_request' '*'
+		END
+	END
+
+	PROJECTION
+		'init=epsg:26915'
+	END
+
+	LEGEND
+	      STATUS ON
+	      LABEL
+		TYPE TRUETYPE
+		FONT vera_sans
+		SIZE 8
+		COLOR 0 0 0
+	      END		
+	END	
+
+	LAYER # County Boundary Polygon Outline Layer
+	    NAME 'county_borders'
+	    DATA './county'
+	    STATUS ON
+	    TYPE LINE
+	    MINSCALE 1000
+	    SYMBOLSCALE 200000
+	      CLASS
+		 NAME "County Boundary"
+		 STYLE
+		   WIDTH 3
+		   COLOR 210 210 210
+		 END
+	      END
+	END # County Boundary Polygon Layer
+
+	LAYER # City Boundary Polygon Layer
+	      NAME city_poly
+	      DATA './muni'
+	      STATUS DEFAULT
+	      TYPE POLYGON
+	      MAXSCALE 1000000
+	      MINSCALE 1000
+		CLASS
+			NAME 'Cities'
+			EXPRESSION ("[MUN_ID]" ~ "..[135].*")
+			STYLE
+				COLOR "#A9B5A3"
+			END
+		END
+		CLASS
+			EXPRESSION ("[MUN_ID]" ~ "..[246].*")
+			STYLE
+				COLOR "#54B524"
+			END
+		END
+		CLASS
+			EXPRESSION ("[MUN_ID]" ~ "..[7890].*")
+			STYLE
+				COLOR "#6DB548"
+			END
+		END
+		OPACITY 50
+
+
+
+	      
+#	        STYLE
+#	          SYMBOL 'dashed2'
+#	          SIZE 3
+#	          COLOR 64 255 100
+#               END
+#	      END
+	END # City Boundary Polygon Layer
+
+	LAYER # City Boundary Polygon Layer
+	    NAME city_labels
+	    DATA './muni'
+	    STATUS DEFAULT
+	    TYPE annotation
+	    #MAXSCALE 100000
+	    MINSCALE 500
+	    LABELITEM 'MUNI_NAME'
+	    LABELCACHE ON
+	     CLASS
+	       COLOR -1 -1 -1
+	       LABEL
+		TYPE TRUETYPE
+		FONT vera_sans
+		MAXSIZE 10
+		MINSIZE 7
+		ANTIALIAS TRUE
+		COLOR 0 0 0
+		OUTLINECOLOR 254 254 254
+		BUFFER 2
+	       END
+	     END
+	END # City Boundary Polygon Layer
+
+	LAYER
+	    NAME 'county_labels'
+	    DATA './county'
+	    STATUS DEFAULT
+	    TYPE ANNOTATION
+	    MINSCALE 1000
+	    SYMBOLSCALE 200000
+	    LABELMAXSCALE 2000000
+	    LABELMINSCALE 100000
+	    LABELITEM 'COUNTYNAME'
+	    LABELCACHE ON
+	    CLASS
+	      STYLE
+		COLOR -1 -1 -1
+	      END
+	      LABEL
+		TYPE TRUETYPE
+		FONT vera_sans-bold
+		FORCE TRUE
+		MINSIZE 8
+		SIZE 10
+		MAXSIZE 12
+		# ANTIALIAS TRUE
+		COLOR 0 0 0
+		OUTLINECOLOR 232 232 232
+		BUFFER 4
+	      END
+	    END
+	END
+
+END ## end Map
+

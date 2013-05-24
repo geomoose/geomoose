@@ -1,0 +1,54 @@
+MAP
+	NAME 'pipelines'
+	SIZE 800 650
+	STATUS ON
+	EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
+	UNITS METERS
+
+	INCLUDE "../../geomoose_globals.map"
+
+	WEB
+		INCLUDE "../../temp_directory.map"
+	END
+
+	
+	LEGEND
+	      STATUS ON
+	      LABEL
+		TYPE TRUETYPE
+		FONT vera_sans
+		SIZE 8
+		COLOR 0 0 0
+	      END		
+	END	
+
+	LAYER
+		NAME 'Pipelines'
+		DATA 'pipeline_not_real'
+		TYPE LINE
+		STATUS ON
+		DUMP TRUE
+
+		CLASS
+		  NAME 'Pipelines'
+		  STYLE
+				SYMBOL 'plainline'
+				SIZE 3
+				COLOR -1 -1 -1
+				OUTLINECOLOR 200 0 255
+			END
+		END
+
+		TOLERANCEUNITS FEET
+		TOLERANCE 200
+
+		TEMPLATE 'wms.html'
+
+		METADATA
+			'popups'	'pipelines_popup.html'
+			"gml_include_items" "all"
+		END
+	END
+
+END ## end Map
+

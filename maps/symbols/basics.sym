@@ -1,0 +1,55 @@
+SYMBOLSET
+ SYMBOL
+    NAME "box"
+    TYPE vector
+    FILLED true
+    POINTS
+      0 0
+      0 4
+      4 4
+      4 0
+      0 0
+    END
+  END
+
+  SYMBOL
+    NAME "crossh"
+    TYPE vector
+    POINTS
+      4 0
+      4 8
+      -99 -99
+      0 4
+      8 4
+    END
+  END
+  SYMBOL
+    NAME "boxx"
+    TYPE vector
+    POINTS
+      0 4
+      4 0
+      -99 -99
+      0 0
+      4 4
+    END
+  END
+
+  SYMBOL
+    NAME "triangle"
+    TYPE vector
+    POINTS
+      0 4
+      2 0
+      4 4
+      0 4
+    END
+  END
+
+  SYMBOL
+    NAME 'circle'
+    TYPE ELLIPSE
+    FILLED TRUE
+    POINTS 1 1 END
+  END
+END

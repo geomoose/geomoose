@@ -1,0 +1,9 @@
+All of these tools are used to build the GeoMOOSE packaging.  They may have some use to others and are included in the distribution.
+
+These tools are written in Python because I like Python better than PHP.  A LOT BETTER.
+
+createSprite.py
+Combines all of the icons in the images/toolbar and images/catalog folder to produce a single 24-bit PNG stored in htdocs/images/all.png.  I use GIMP to convert the image to a GIF as it has a much better PNG->GIF conversion algorithm than does the Python Imaging Library.
+
+compileCSS.py
+This script was used to build composite CSS files to decrease download requirements for geomoose.html

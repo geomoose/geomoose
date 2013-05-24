@@ -1,0 +1,57 @@
+# This layer provides an example of a WFS data source.  The WFS data source for this layer is
+# from the MetroGIS http://www.datafinder.org/services/
+
+MAP
+  NAME 'HydroWFS'
+  SIZE 800 650
+  STATUS ON
+  EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
+  UNITS METERS
+
+	INCLUDE "../../geomoose_globals.map"
+
+	WEB
+		INCLUDE "../../temp_directory.map"
+		METADATA
+			'ows_enable_request' '*'
+		END
+
+	END
+ 
+ 	LEGEND
+ 	      STATUS ON
+ 	      LABEL
+ 		TYPE TRUETYPE
+ 		FONT vera_sans
+ 		SIZE 8
+ 		COLOR 0 0 0
+ 	      END		
+	END
+ 
+   LAYER
+     NAME  "watersheds_2_a"
+     TYPE  LINE
+     STATUS  ON
+     CONNECTIONTYPE wfs
+     CONNECTION "http://www.datafinder.org:80/wfsconnector/com.esri.wfs.Esrimap/MN_MetroGIS_DataFinder_WFS_Water_Resources?"
+ 
+     MINSCALE        2000 # only display down to this scale
+ 
+     METADATA
+       "wfs_typename"   "watersheds_2_a"
+       "wfs_version"    "1.0.0"
+ 			"wfs_request_method"    "GET"
+ 			"wfs_connectiontimeout" "60"
+ 			"wfs_maxfeatures"       "100"
+     END
+     
+     CLASS
+       NAME "Watersheds"
+       STYLE
+         COLOR 255 153 51
+         WIDTH 3
+       END
+     END
+   END
+ 
+END

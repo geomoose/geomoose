@@ -1,0 +1,5 @@
+<h3>GeoMOOSE Demo Applications, Version @VERSION@</h3>
+<ul>
+  <li><a href="/geomoose2/geomoose.html">GeoMOOSE @VERSION@ Demo Application</a></li>
+  <li><a href="http://www.geomoose.org/">GeoMOOSE Web Site</a></li>
+</ul>

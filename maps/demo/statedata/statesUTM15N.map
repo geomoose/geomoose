@@ -1,0 +1,79 @@
+MAP
+	NAME 'states'
+	SIZE 800 650
+	STATUS ON
+	EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
+        UNITS METERS
+
+	INCLUDE "../../geomoose_globals.map"
+
+	WEB
+		INCLUDE "../../temp_directory.map"
+		METADATA
+			'ows_enable_request' '*'
+		END
+	END
+	
+	LEGEND
+	      STATUS ON
+	      LABEL
+		TYPE TRUETYPE
+		FONT vera_sans
+		SIZE 8
+		COLOR 0 0 0
+	      END		
+	END
+	
+#    CONFIG PROJ_LIB "/ms4w/proj/nad"
+
+    Projection
+	"init=epsg:26915"   # UTM Zone 15N
+    END
+
+LAYER
+	NAME 'States'
+	DATA './statesDD.shp'
+	TYPE LINE
+	STATUS ON
+	PROJECTION
+		"init=epsg:4326"	# Decimal Degrees, WGS84
+	END
+	CLASS
+	  NAME 'State Boundary'
+	  STYLE
+	  COLOR 100 100 100
+	END
+	END
+	MAXSCALE 1500000000
+END
+
+  LAYER
+    NAME "State Names"
+    TYPE annotation
+    STATUS ON
+    DATA "./statesDD.shp"
+	PROJECTION
+		"init=epsg:4326"	# Decimal Degrees, WGS84
+	END
+    LABELITEM 'state'
+    CLASS
+      EXPRESSION ('[STATE]' ne 'Minnesota')
+      LABEL
+        TYPE TRUETYPE
+        FONT vera_sans
+        MAXSIZE 9
+        SIZE 9
+        MINSIZE 7
+        #ANTIALIAS TRUE
+        COLOR 0 0 0
+        OUTLINECOLOR 255 255 254
+        BUFFER 4
+        ANGLE AUTO
+      END
+    END
+    MINSCALE 10000
+    MAXSCALE 30000000
+  End #layer
+
+END ## end Map
+

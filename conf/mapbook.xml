@@ -1,0 +1,443 @@
+<?xml version="1.0"?>
+<mapbook version="2.6">
+	<configuration>
+		<param name="links_bar_html"><![CDATA[
+			<b>Our Stack:</b>
+			<a target="_blank" href="http://www.geomoose.org">GeoMOOSE.org</a> |
+			<a target="_blank" href="http://www.mapserver.org">MapServer</a> |
+			<a target="_blank" href="http://www.openlayers.org">OpenLayers</a> |
+			<a target="_blank" href="http://www.dojotoolkit.org">Dojo</a> 
+		]]></param>
+		<param name="projection">EPSG:3857</param>
+
+		<param name="zoomto"><![CDATA[
+		{
+			"Jump To:" : {
+				"World" : [-20614760.777156,1751325.1919492,-1927436.1053437,7915207.1517617],
+				"Parcel Data" : [-10384069.859924,5538318.529767,-10356632.423788,5563580.927174],
+				"Full State of MN" : [-10742765,5398288,-9920914,6310641]
+			}
+		}
+		]]></param>
+		<param name="max_extent">-20037508.342789,-20037508.342789,20037508.342789,20037508.342789</param>
+		<param name="initial_extent">-10384069.859924,5538318.529767,-10356632.423788,5563580.927174</param>
+		<param name="always_scroll_zoom">true</param>
+		<param name="measure_tool.show_area_segments">false</param>
+
+		<param name="layer_controls.legend.on">false</param>
+		<param name="layer_controls.metadata.on">false</param>		
+		<param name="layer_controls.legend.on">true</param>	
+
+		<param name="group_checkboxes">false</param>
+
+		<param name="default_tab">Catalog</param>
+	      
+		<param name="ground_units">m</param>
+		<param name="maxResolution">156543.03390625</param>
+		<param name="numZoomLevels">20</param>
+
+		<param name="reference_map.enabled">true</param>
+		<param name="coordinate_display.usng">true</param>
+		<param name="jumpto_scales"><![CDATA[
+		{
+			"1:100000" : 100000,
+			"1:50000" : 50000,
+			"1:24000" : 24000,
+			"1:10000" : 10000,
+			"1:5000" : 5000
+		}
+	]]></param>	
+
+	</configuration>
+	<!--
+		The mapping services define the source of the mapping data.
+	-->
+
+	<map-source name="sketch" type="vector" active="true" status="on">
+		<style type="stylemap"><![CDATA[
+		{
+			"label" : "${title}",
+			"strokeColor" : "${line_color}",
+			"fillColor" : "${fill_color}"
+		}
+		]]></style>
+		<attribute name="title" type="user" default-value="" label="Feature Label:"/>
+		<attribute name="line_color" type="color" default-value="#ff0000" label="Stroke Color:"/>
+		<attribute name="fill_color" type="color" default-value="#ff0000" label="Fill Color:"/>
+		<!--
+		<attribute name="opacity" type="select" default-value="100" label="Opacity (%):"/>
+		<attribute name="line_opacity" type="select" default-value="100" label="Stroke Opacity (%):"/>
+		-->
+		<attribute name="label_only" type="checkbox" default-value="false" label="Only show label in print?"/>
+	</map-source>
+
+	<map-source name="census_cities" type="wfs">
+		<style type="stylemap"><![CDATA[
+		{
+			"strokeColor" : "#00ff00",
+			"label" : "${namelsad}"
+		}
+		]]></style>
+
+		<url>/geoserver/GeoMOOSE_Testing/ows</url>
+
+		<attribute name="geoid10" type="text" label="ID:" default-value="27999"/>
+		<attribute name="namelsad10" type="text" label="Name:"/>
+
+		<feature-namespace>geomoose</feature-namespace>
+		<feature-type>census_cities</feature-type>
+		<geometry-name>wkb_geometry</geometry-name>
+		<schema><![CDATA[http://localhost:8080/geoserver/GeoMOOSE_Testing/wfs?service=WFS&version=1.1.0&request=DescribeFeatureType&typeName=GeoMOOSE_Testing:census_cities]]></schema>
+	</map-source>
+
+	<map-source name="highlight" type="mapserver">
+		<file/>
+		<layer name="highlight"/>
+		<param name="TRANSPARENT" value="TRUE"/>
+	</map-source>
+
+	<map-source name="parcels" type="mapserver">
+		<file>./demo/parcels/parcels.map</file>
+		<layer name="parcels" status="on"/>
+		<param name="FORMAT" value="image/png;bits=8"/>
+	</map-source>
+
+	<map-source name="borders" type="mapserver" reference="true">
+		<file>./demo/statedata/basemap.map</file>
+		<layer name="city_labels" status="on"/>
+		<layer name="county_labels" status="on"/>
+		<layer name="city_poly" status="on"/>
+		<layer name="county_borders" status="on"/>
+	</map-source>
+
+	<map-source name="iastate" type="wms">
+		<url>http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi</url>
+		<layer name="nexrad-n0r"/>
+		<param name="FORMAT" value="image/png"/>
+		<param name="TRANSPARENT" value="TRUE"/>
+	</map-source>
+
+
+	<map-source name="ags" type="ags">
+		<url>http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/export</url>
+		<layer name="NatGeo_World_Map"/>
+		<param name="FORMAT" value="png"/>
+	</map-source>
+
+	<map-source name="mapquest" type="xyz">
+		<layer name="osm" />
+		<url>http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
+		<url>http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
+		<url>http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
+		<url>http://otile4.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
+	</map-source>
+
+
+	<map-source name="mapquest2" type="xyz">
+		<layer name="sat" />
+		<url>http://oatile1.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
+		<url>http://oatile2.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
+		<url>http://oatile3.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
+		<url>http://oatile4.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
+	</map-source>
+
+
+
+	<map-source name="usgs" type="mapserver">
+		<file>./demo/wms/usgs.map</file>
+		<layer name="DOQ"/>
+		<layer name="DRG"/>
+	</map-source>
+
+	<map-source name="lmic" type="mapserver">
+		<file>./demo/wms/lmic.map</file>
+		<layer name="met10"/>
+	</map-source>
+
+	<map-source name="google_physical" type="google" google-type="physical">
+		<layer name="all"/>
+	</map-source>
+
+	<map-source name="google_streets" type="google" google-type="streets">
+		<layer name="all"/>
+	</map-source>
+
+	<map-source name="google_hybrid" type="google" google-type="hybrid">
+		<layer name="all"/>
+	</map-source>
+
+	<map-source name="google_satellite" type="google" google-type="satellite">
+		<layer name="all"/>
+	</map-source>
+
+	<map-source name="blank" type="wms" tiled="false">
+		<url>./images/blank.gif</url>
+		<layer name="blank" status="on"/>
+	</map-source>
+
+
+	
+
+
+	<service name="print" title="Print Map" keep-others="true">
+		<step type="input">
+			<url>php/print.php</url>
+			<input type="print_info" name="layers"/>
+			<input type="extent" name="extent"/>
+
+			<input type="user" name="title" title="Map Title">Map</input>
+			<input type="hidden" name="date" title="Map Date">true</input>
+
+			<input type="select" name="template" title="Output Template: ">
+				<option value="letter_landscape">Letter - Landscape</option>
+				<option value="letter_portrait">Letter - Portrait</option>
+				<option value="poster_landscape">11" x 17" - Landscape</option>
+				<option value="poster_portrait">11" x 17" - Portrait</option>
+			</input>
+
+			<input type="select" name="quality" title="Image Quality: ">
+				<option value="2">Higher</option>
+				<option value="3">Highest</option>
+				<option value="1">Standard</option>
+			</input>
+
+			<input type="select" name="scale" title="Print Scale: ">
+				<option value="map">Current Map Scale</option>
+				<option value="1000">1:1000</option>
+				<option value="5000">1:5000</option>
+				<option value="10000">1:10000</option>
+			</input>
+		</step>
+	</service>
+
+	<service name="identify" title="Identify" display="true">
+		<url>php/identify.php</url>
+		<step type="spatial" name="shape" line="false" polygon="false" jump-start="true" default="point" box="true" pan="false">
+			<header>
+				Click on the map to see more detailed information.
+			</header>
+			<!--
+			Uncomment this line to test "hidden" layers working with identify.  This will
+			leave the layers listed here always identified despite their visibility.
+			<input type="hidden" name="hidden_layers" value="parcels/parcels"/>
+			-->
+			<input type="visiblelayers" name="layers"/>
+			<input type="projection" name="projection"/>
+		</step>
+	</service>
+
+	<service name="birdseye" target="_blank" title="Birds Eye View">
+		<url>php/birdseye.php</url>
+		<step type="spatial" name="xy" line="false" polygon="false" jump-start="true" default="point" format="delim" reproject="EPSG:4326">
+			<header>
+				Click on the map to view the area using Microsoft Bing! Maps.
+			</header>
+		</step>
+	</service>
+
+	<service name="streetview" target="_blank" title="Street View">
+		<url>php/streetview.php</url>
+		<step type="spatial" name="xy" line="false" polygon="false" jump-start="true" default="point" format="delim" reproject="EPSG:4326">
+			<header>
+				Click on the map to view the point in Google Street View.
+			</header>
+		</step>
+	</service>
+
+	<service name="feature_report" display="false" keep-others="true">
+		<url>php/feature_report.php</url>
+		<input type="hidden" name="layers" value="lmic/fsa"/>
+		<input type="hidden" name="src"/>
+		<input type="hidden" name="PIN"/>
+	</service>
+
+	<!-- this is called after a standard select in order to buffer the previous selection -->
+	<service name="buffered_select_followup" title="Buffered Select">
+		<url>php/select.php</url>
+		<step type="input">
+			<input type="hidden" name="shape"/>
+			<input type="hidden" name="select_layer"/>
+			<input type="hidden" name="query_layer"/>
+			<input type="hidden" name="selection_buffer"/>
+			<input type="length" name="shape_buffer" title="Buffer Features By: "/>
+			<input type="projection" name="projection"/>
+		</step>
+	</service>
+
+	<service name="buffered_select" title="Select Features">
+		<url>php/select.php</url>
+
+		<!-- Send a selection shape + the visible layers list to the service -->
+		<step type="spatial" showTools="true" name="shape" line="true" polygon="true" point="true" default="polygon" edit-polygon="false" pan="false">
+
+			<header><![CDATA[Create a selection area by clicking on the map.]]></header>
+
+			<input type="visiblelayers" name="layers"/>
+
+			<!-- 
+				Option values should be the mapbook path to the layer.
+				This only supports 'mapserver'-type layers.
+			-->
+			<input type="select" name="select_layer" title="Select features from:">
+				<option value="parcels/parcels">Parcels</option>
+			</input>
+			
+			<!--
+			<input type="user" name="select_buffer" title="Buffer Selected Features (m)">0</input>
+			-->
+
+			<input type="length" name="selection_buffer" title="Buffer Selection Shape">0</input>
+			<input type="select" name="query_layer" title="Using Features In">
+				<option value="">No Layer</option>
+				<option value="parcels/parcels">Parcels</option>
+			</input>
+			<input type="projection" name="projection"/>
+
+			<footnote><![CDATA[
+			]]></footnote>
+		</step>
+	</service>
+
+	<service name="popups" display="false">
+		<url>php/popups.php</url>
+		<step type="spatial" name="shape" line="false" polygon="false" jump-start="true" default="point">
+			<header><![CDATA[
+			Click on the map to show a popup about the features.
+			]]></header>
+			<input type="hidden" name="layer"/>
+		</step>
+	</service>
+
+	<service name="geocode_address" title="Geocode Address">
+		<url>php/geocode.php</url>
+		<step type="input">
+			<input type="user" name="address" title="Enter Address: "/>
+			<input type="hidden" name="googlekey" value="ABQIAAAA4Q-VLyIpwp3L8M9DIzKb2BT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRe8Hd6FR51Hvb-Fvd-wGjiDZDC4w"/>
+		</step>
+	</service>
+
+
+	<service name="search_parcels" title="Search">
+		<url>php/query.php</url>
+		<step type="input">
+			<input type="hidden" name="highlight" value="true"/>
+			<input type="hidden" name="mode" value="search"/>
+
+			<input type="hidden" name="layer0" value="parcels/parcels"/>
+			<input type="hidden" name="template0" value="itemquery"/>
+
+			<input type="select" name="fieldname0" title="Search By:">
+				<option value="OWNER_NAME">Owner</option>
+				<option value="PIN">Parcel ID</option>
+			</input>
+			<input type="select" name="comparitor0" title="That: ">
+				<option value="like-icase">Contains</option>
+				<option value="right-like-icase">Begins With</option>
+				<option value="eq-str">Matches Exactly</option>
+				<option value="in">In List</option>
+			</input>
+			<input type="user" name="value0" title=""/>
+
+			<input type="hidden" name="fieldname1" value="FIN_SQ_FT"/>
+			<input type="select" name="operator1">
+				<option value="or">OR</option>
+				<option value="and">AND</option>
+			</input>
+			<input type="select" name="comparitor1" title="Having Fin. Sq. Ft. ">
+				<option value="gt">Greater Than</option>
+				<option value="eq">Equal To</option>
+				<option value="lt">Less Than</option>
+			</input>
+			<input type="user" name="value1" title=""/>
+		</step>
+	</service>
+
+	<!-- 
+		The catalog defines how the layers will be displayed in the catalog tab.
+	-->
+	<layer-controls>
+		<layer-control name="popups" service-name="popups" layer-input="layer" on="false" tip="Show Popups for %LAYER%"/> 
+	</layer-controls>
+
+	<catalog>
+		<!--
+		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false"></layer>
+		<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
+		-->
+		<group title="Overlays">
+
+			<group title="County Layers" expand="false">
+
+				<layer title="Parcels" src="parcels/parcels" metadata="true" legend="true" tip="this a parcel layer, y'all" show-legend="true">
+					<metadata>http://www.geomoose.org/docs/</metadata>
+					<!--
+					<legend>images/logo_mini.gif</legend>
+					-->
+				</layer>
+				<layer title="City and County Boundaries" src="borders/city_labels:borders/county_labels:borders/county_borders:borders/city_poly"/>
+			</group>
+
+			<layer title="Weather Radar" src="iastate/nexrad-n0r" />
+		</group>
+
+		<group title="Backgrounds" expand="true" multiple="false">
+			<layer title="Reprojected Regional Aerial" src="lmic/met10" legend="false" fade="false" unfade="false"/>
+
+			<layer title="Google Streets" src="google_streets/all" status="off" legend="false" fade="false" unfade="false"/>
+			<layer title="Google Physical" src="google_physical/all" status="off" legend="false" fade="false" unfade="false"/>
+			<layer title="Google Hybrid" src="google_hybrid/all" status="off" legend="false" fade="false" unfade="false"/>
+			<layer title="Google Satellite" src="google_satellite/all" status="off" legend="false" fade="false" unfade="false"/>
+
+			<layer title="MapQuest OSM" src="mapquest/osm" status="off" legend="false" fade="false" unfade="false"/>
+			<layer title="MapQuest Satellite Tiles" src="mapquest2/sat" status="off" legend="false" fade="false" unfade="false"/>
+
+
+			<layer title="USGS DOQs" src="usgs/DOQ" legend="false" fade="false" unfade="false"/>
+			<layer title="USGS Topo Quads" src="usgs/DRG" legend="false" fade="false" unfade="false"/>
+			<layer title="ArcGIS 9.3 Rest Example" src="ags/NatGeo_World_Map" legend="false" fade="false" unfade="false"/>
+			<layer title="None" src="blank/blank" legend="false" fade="false" unfade="false"/>
+		</group>
+	</catalog>
+
+	<!--
+		The toolbar defines which services are referneces in the toolbar
+	-->
+	<toolbar>
+		<tool name="previous" title="Previous Extent" type="internal" action="previous" selectable="false"/>
+		<tool name="next" title="Next Extent" type="internal" action="next" selectable="false"/>
+		<tool name="fullextent" title="Zoom to Full Extent" type="internal" action="fullextent" selectable="false"/>
+		<tool name="pan" title="Pan" type="internal" action="pan" selected="true"/>
+		<tool name="zoomin" title="Zoom In" type="internal" action="zoomin"/>
+		<tool name="zoomout" title="Zoom Out" type="internal" action="zoomout"/>
+		<tool name="measure" title="Measure" type="internal" action="measure"/>
+		<tool name="measurearea" title="Measure Area" type="internal" action="measurearea"/>
+		<tool name="print" title="Print" type="service" service="print" selectable="false" icon-class="sprite-control sprite-control-printer"/>
+
+		<tool name="identify" title="Identify" type="service" service="identify" cursor="url(./cursors/identify2.gif) 9 9,url(./cursors/identify2.cur),help"/>
+
+		<tool name="clear" title="Clear Selection" type="javascript" selectable="false">
+			GeoMOOSE.changeLayerVisibility('highlight/highlight', false);
+		</tool>
+<!--		<tool name="select" title="Select" type="service" service="select"/> -->
+		<tool name="birdseye" title="Bird's Eye View" type="service" selectable="true" service="birdseye"/>
+		<tool name="streetview" title="Google Street View" type="service" service="streetview" selectable="true"/>
+		<tool name="geocode" title="Geocode Address" type="service" service="geocode_address" selectable="true"/> 	
+
+		<drawer title="Layer Tools" icon-class="sprite-control sprite-control-markup_tools" show-label="true">
+			<tool name="draw_polygon" title="Add Polygon" type="layer" action="polygon" show-label="true"/>
+			<tool name="draw_line" title="Add Line" type="layer" action="line" show-label="true"/>
+			<tool name="draw_point" title="Add Point" type="layer" action="point" show-label="true"/>
+			<tool name="draw_remove" title="Remove Feature" type="layer" action="remove" show-label="true"/>
+			<tool name="draw_edit" title="Edit Features" type="layer" action="modify" show-label="true"/>
+			<tool name="draw_edit_attributes" title="Edit Attributes" type="layer" action="edit_attributes" show-label="true"/>
+			<tool name="clear_drawings" title="Remove All Features" type="layer" action="remove_all" selectable="false" show-label="true"/>
+			<tool name="save_changes" title="Save Changes" type="javascript" selectable="false" show-label="true"><![CDATA[
+				GeoMOOSE.saveChanges(GeoMOOSE.getActiveMapSource());
+			]]></tool>
+		</drawer>
+
+		<tool name="buffered_select" title="Select Features" type="service" service="buffered_select" show-label="true"/>
+		<tool name="search_parcels" title="Search Parcels" type="service" service="search_parcels" selectable="false" show-label="true"/>
+
+	</toolbar>
+</mapbook>

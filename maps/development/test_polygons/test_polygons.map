@@ -1,0 +1,31 @@
+MAP
+	SIZE 400 400
+	EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
+	UNITS METERS
+	SYMBOLSET '../symbols/symbol.sym'
+	STATUS ON
+
+	TRANSPARENT TRUE
+
+	LAYER
+		NAME 'polygons'
+		TYPE POLYGON
+		STATUS ON
+
+		CONNECTIONTYPE POSTGIS
+		CONNECTION 'host=192.168.52.1 dbname=geomoose_test user=postgres password=postgres'
+		DATA 'wkb_geometry from (select polygon_id, title, owner, astext(wkb_geometry) as wkt_geometry, wkb_geometry from test_polygons) as mytable using unique polygon_id'
+
+		CLASS
+			STYLE
+				SYMBOL 'circle'
+				OUTLINECOLOR 255 255 0
+				SIZE 10
+			END
+		END
+
+		METADATA
+			'identify_record' 'identify.html'
+		END
+	END
+END

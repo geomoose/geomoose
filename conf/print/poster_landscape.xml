@@ -1,0 +1,13 @@
+<print-template>
+	<!-- This is the template -->
+	<template>poster_landscape.pdf</template>
+
+	<!-- page dimensions -->
+	<page w='17' h='11'/>
+
+	<!-- this is the location of the map in the template -->
+	<map x="0.43" y="1.17" w="16.14" h="8.92"/>
+
+	<text x=".5" y=".75" size="48" content="%title%"/>
+
+</print-template>

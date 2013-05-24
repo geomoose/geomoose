@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<imagemap>
+<style>
+	<title>
+		<attr name="background" value="#00A"/>
+		<attr name="color" value="#FFF"/>
+	</title>
+	<contents>
+		<attr name="background" value="white"/>
+		<attr name="color" value="black"/>
+	</contents>
+</style>

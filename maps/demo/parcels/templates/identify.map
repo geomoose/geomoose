@@ -1,0 +1,5 @@
+<!-- MapServer Template -->
+<a id="gm-parcel-[PIN]" class='sprite-control sprite-control-find-selected' style="padding-left: 22px" parcel-shape="[shpxy]" href="javascript:GeoMOOSE.zoomToPointsList(dojo.byId('gm-parcel-[PIN]').getAttribute('parcel-shape'), 'EPSG:26915');">[PIN]</a><br/>
+
+[OWNER_NAME]<br/>
+<br/>

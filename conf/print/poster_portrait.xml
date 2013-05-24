@@ -1,0 +1,13 @@
+<print-template>
+	<!-- This is the template -->
+	<template>poster_portrait.pdf</template>
+
+	<!-- page dimensions -->
+	<page w='11' h='17'/>
+
+	<!-- this is the location of the map in the template -->
+	<map x="0.43" y="1.17" w="10.15" h="14.95"/>
+
+	<text x=".5" y=".75" size="48" content="%title%"/>
+
+</print-template>

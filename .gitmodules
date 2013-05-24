@@ -1,0 +1,9 @@
+[submodule "docs"]
+	path = docs
+	url = git://github.com/geomoose/geomoose-docs.git
+[submodule "services"]
+	path = services
+	url = git://github.com/geomoose/geomoose-services.git
+[submodule "js"]
+	path = js
+	url = git@github.com:geomoose/geomoose-js.git

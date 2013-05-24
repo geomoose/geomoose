@@ -1,0 +1,26 @@
+<print-template>
+	<!-- This is the template -->
+	<template>default_template.pdf</template>
+
+	<!-- page dimensions -->
+	<page w='11' h='8.5'/>
+
+	<!-- this is the location of the map in the template -->
+	<map x="0.43" y="1.43" w="10.15" h="6.42"/>
+
+	
+	<!-- 
+		This text that can be dynamically drawn on the map.
+		Variables in "%" will be substituted with values from the CGI
+		request.  For example...
+			<text x="1" y="1" size="10" content="Map Title: %title%"/>
+		And a request of
+			...&title=My Map
+		Will result in...
+			"Map Title: My Map" being drawing on the map, with size 10 font,
+			at 1in left and 1in from the top
+	-->
+
+	<text x=".5" y=".75" size="48" content="%title%"/>
+
+</print-template>

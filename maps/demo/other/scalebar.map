@@ -1,0 +1,27 @@
+#
+# This layer is designed to just create a scale bar
+# Nothing more, nothing less.
+
+MAP
+	NAME 'ScaleBar Feature'
+	UNITS METERS
+	TRANSPARENT ON
+	INCLUDE "../../geomoose_globals.map"
+
+	SCALEBAR
+		INTERVALS 4
+		STATUS EMBED
+		STYLE 0
+		OUTLINECOLOR 0 0 0
+		POSITION UR
+		UNITS METERS
+		BACKGROUNDCOLOR 200 200 200
+
+                LABEL
+                     COLOR    0 0 0
+                     OUTLINECOLOR 200 200 200
+                     SIZE     SMALL
+                END
+
+	END
+END

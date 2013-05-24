@@ -1,0 +1,229 @@
+SYMBOLSET
+
+#markerset
+
+SYMBOL
+    NAME 'railway'
+    TYPE TRUETYPE
+    FONT 'Tahoma'
+    CHARACTER '|'
+    #GAP 10
+  END
+
+Symbol
+Name 'tent'
+Type VECTOR
+FILLED TRUE
+Points
+0 1
+.5 0
+1 1
+.75 1
+.5 .5
+.25 1
+0 1
+END
+END 
+
+Symbol
+Name 'star'
+Type VECTOR
+FILLED TRUE
+Points
+0 .375
+.35 .375
+.5 0
+.65 .375
+1 .375
+.75 .625
+.875 1
+.5 .75
+.125 1
+.25 .625
+END
+END 
+
+Symbol
+Name 'triangle'
+Type VECTOR
+FILLED TRUE
+Points
+0 1
+.5 0
+1 1
+0 1
+END
+END 
+
+Symbol
+Name 'square'
+Type VECTOR
+FILLED TRUE
+Points
+0 1
+0 0
+1 0
+1 1
+0 1
+END
+END 
+
+Symbol
+Name 'plus'
+Type VECTOR
+Points
+.5 0
+.5 1
+-99 -99
+0 .5
+1 .5
+END
+END 
+
+Symbol
+Name 'cross'
+Type VECTOR
+Points
+0 0
+1 1
+-99 -99
+0 1
+1 0
+END
+END
+
+Symbol
+Name 'circle'
+Type ELLIPSE
+FILLED TRUE
+Points
+1 1
+END
+END 
+
+SYMBOL
+    NAME 'circle-dashed'
+    TYPE ELLIPSE
+    FILLED TRUE
+    POINTS 1 1 END
+    #STYLE 5 5 END
+  END
+
+#LINESET
+
+Symbol
+  NAME 'dashed1'
+  TYPE ELLIPSE
+  POINTS 1 1 END
+  FILLED TRUE
+  #STYLE 2 4 END
+END
+
+Symbol
+  NAME 'dashed2'
+  TYPE ELLIPSE
+  POINTS 1 1 END
+  FILLED TRUE
+  #STYLE 7 5 END
+END
+
+Symbol
+  NAME 'countydashed'
+  TYPE ELLIPSE
+  POINTS 1 1 END
+  FILLED TRUE
+  #STYLE 6 2 1 1 1 2 6 END
+END
+
+Symbol
+  NAME 'ditch'
+  TYPE ELLIPSE
+  POINTS 1 1 END
+  FILLED TRUE
+  #STYLE 3 3 3 3 END
+END
+
+SYMBOL
+   NAME 'dcircle'
+   TYPE ELLIPSE
+   FILLED TRUE
+   POINTS 1 1 END
+   #STYLE 5 5 END
+END
+
+Symbol
+  NAME 'railroad'
+  TYPE VECTOR
+   POINTS 0 5 5 0 END
+   FILLED TRUE
+   #STYLE 6 6 6 6 END
+END
+
+Symbol
+  NAME 'plainline'
+  TYPE ELLIPSE
+  FILLED TRUE
+  POINTS 1 1 END
+END
+
+#shadeset
+Symbol
+NAME 'shade1'
+Type VECTOR
+TRANSPARENT 0
+Points
+0 1
+1 1
+END
+END 
+
+Symbol
+NAME 'shade2'
+Type VECTOR
+TRANSPARENT 0
+Points
+1 0
+1 1
+END
+END 
+
+Symbol
+NAME 'shade3'
+Type VECTOR
+TRANSPARENT 0
+Points
+0 0
+1 1
+END
+END 
+
+Symbol
+NAME 'shade4'
+Type VECTOR
+TRANSPARENT 0
+Points
+0 1
+1 0
+END
+END 
+
+Symbol
+NAME 'shade5'
+Type VECTOR
+Points
+0 1
+1 0
+-99 -99
+0 0
+1 1
+END
+END 
+
+Symbol
+NAME 'shade6'
+Type ELLIPSE
+FILLED TRUE
+Points 1 1 END
+END 
+
+END #Symbolset

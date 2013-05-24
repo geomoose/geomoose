@@ -1,0 +1,15 @@
+<!-- MapServer Template -->
+<tr bgcolor="#AA55AA">
+	<td colspan="2"><b>[title] ([polygon_id])</b></td>
+</tr>
+<tr>	
+	<td>Owner:</td><td>[owner]</td>
+</tr>
+<tr>
+<td>
+	<a href="javascript:GeoMOOSE.startService('modify_polygon', {'feature:polygon_id' : '[polygon_id]','feature:wkb_geometry' : '[wkt_geometry]', 'feature:title' : '[title]', 'feature:owner' : '[owner]'})">Edit</a>
+</td>
+<td>
+	<a href="javascript:if(confirm('Are you sure you want to delete this?')) { GeoMOOSE.startService('delete_polygon', {'feature:polygon_id' : '[polygon_id]'}); }">Delete</a>
+</td>
+</tr>

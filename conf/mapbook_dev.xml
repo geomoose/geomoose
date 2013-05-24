@@ -1,0 +1,327 @@
+<?xml version="1.0"?>
+<mapbook version="2.0">
+	<configuration>
+		<!-- MS4W Settings
+		<param name="mapserver_url">/cgi-bin/mapserv.exe</param>
+		<param name="mapfile_root">/ms4w/apps/geomoose2/maps</param>		
+		-->
+		<!-- Linux settings -->
+		<param name="mapserver_url">/mapserver/cgi-bin/mapserv</param>
+	      <param name="mapfile_root">/opt/geomoose/geomoose/moose2-trunk/maps/</param>
+
+		<param name="projection">EPSG:26915</param>
+		<param name="zoomto['Jump To:']"><![CDATA[
+		{
+			'Dakota County' : [521238.614537864,4924218.86673578,473921.947801381,4974430.36885032],
+			'Parcel Data' : [497205.409367,4923984.423582,477595.805945,4941970.52988],
+			'Full State of MN' : [189783.560000,4816309.330000,761653.524114,5472346.500000]
+		}
+		]]></param>
+		<param name="max_extent">189783.560000,4816309.330000,761653.524114,5472346.500000</param>
+		<param name="initial_extent">497205.409367,4923984.423582,477595.805945,4941970.52988</param>
+		<param name="layer_controls.up.on">false</param>
+		<param name="layer_controls.down.on">false</param>		
+		<param name="layer_controls.legend.on">false</param>
+		
+				
+		<param name="ground_units">m</param>
+		<param name="scales">.5,1,4,8,16,24,32,64,128,270,550,1000</param>
+		<param name="reference_map.enabled">true</param>
+		<param name="coordinate_display.usng">true</param>
+		<param name="jumpto_scales"><![CDATA[
+		{
+			'1:50000' : 50000,
+			'1:24000' : 24000,
+			'1:10000' : 10000,
+			'1:5000' : 5000
+		}
+		]]></param>	
+	</configuration>
+	<!--
+		The mapping services define the source of the mapping data.
+	-->
+
+	<map-source name="highlight" type="mapserver">
+		<file></file>
+		<layer name="all"/>
+	</map-source>
+
+	<map-source name="allcounty" type="mapserver">
+		<file>./demo/countydata/combined.map</file>
+		<layer name="feedlots"/>
+		<layer name="firestations"/>
+		<layer name="pipelines"/>
+	</map-source>
+
+
+	<map-source name="basemap" type="mapserver" reference="true">
+		<file>./demo/statedata/basemap.map</file>
+		<layer name="county_borders"/>
+		<layer name="county_labels"/>
+		<layer name="city_poly"/>
+		<layer name="city_labels"/>
+		<layer name="USGSGagingStations"/>
+	</map-source>
+
+	<map-source name="states" type="mapserver" reference="true">
+		<file>./demo/statedata/statesUTM15N.map</file>
+		<layer name="all"/>
+	</map-source>
+
+	<map-source name="feedlots" type="mapserver">
+		  <file>./demo/countydata/feedlots.map</file>
+		  <layer name="all"/>
+	</map-source>
+  
+	<map-source name="metro" type="wms">
+		<url>http://www.datafinder.org:80/wmsconnector/com.esri.wms.Esrimap/MN_MetroGIS_DataFinder_WMS_Water_Resources</url>
+		<layer name="stream_net_l"/>
+		<param name="TRANSPARENT" value="TRUE"/>
+		<param name="FORMAT" value="image/png"/>
+	</map-source>
+
+	<map-source name="weather" type="wms">
+		<url>http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi</url>
+		<layer name="nexrad-n0r"/>
+		<param name="TRANSPARENT" value="TRUE"/>
+		<param name="FORMAT" value="image/png"/>
+	</map-source>
+
+	<map-source name="water" type="mapserver">
+		<file>./demo/wfs/hydro_wfs.map</file>
+		<layer name="all"/>
+	</map-source>
+
+	<map-source name="pipelines" type="mapserver">
+		<file>./demo/countydata/pipelines.map</file>
+		<layer name="all"/>
+	</map-source>
+
+	<map-source name="fire" type="wms" queryable="true">
+		<url>/cgi-bin/mapserv.exe?</url>
+		<param name="map" value="/ms4w/apps/geomoose2/maps_demo/demo/countydata/firestations.map"/>
+		<layer name="firestations"/>
+		<param name="TRANSPARENT" value="TRUE"/>
+		<param name="FORMAT" value="image/png"/>
+	</map-source>
+
+	<map-source name="parcels" type="mapserver">
+		<file>./demo/landrecords/parcels.map</file>
+		<layer name="all"/>
+	</map-source>
+
+	<map-source name='nasa' type='wms' tiled='true' projection='EPSG:4326' width='512' height='512'>
+		<url>http://onearth.jpl.nasa.gov/wms.cgi</url>
+		<layer name="global_mosaic"/>
+		<param name="format" value="image/jpeg"/>
+	</map-source>
+
+	<map-source name='nasa2' type='wms' tiled='false' projection='EPSG:4326' width='512' height='512'>
+		<url>http://onearth.jpl.nasa.gov/wms.cgi</url>
+		<layer name="global_mosaic"/>
+		<param name="format" value="image/jpeg"/>
+	</map-source>
+
+
+
+	<map-source name="lmic" type="wms" tiled="false" reference="true">
+		<url>http://geoint.lmic.state.mn.us/cgi-bin/wms</url>
+			<layer name="fsa2008"/>
+			<layer name="cir2008"/>
+			<layer name="fsa"/>
+			<layer name="metro"/>
+			<layer name="doq"/>
+	</map-source>
+
+	<!-- WMS Layers call the server and get images -->
+	<map-source name="lmic_wmsz" type="wms" tiled="true">
+		<url>http://geoint.lmic.state.mn.us/cgi-bin/wmsz</url>
+		<layer name="drg24"/>
+		<param name="format" value="image/png"/>
+	</map-source>
+	
+	<service name="print" title="Print Map">
+		<url>php/print.php</url>
+		<input type="print_info" name="layers"/>
+		<input type="extent" name="extent"/>
+		<input type="sketches" name="sketches"/>
+
+		<input type="user" name="title" title="Map Title">Map</input>
+
+		<input type="select" name="template" title="Output Template: ">
+			<option value="letter_landscape">Letter - Landscape</option>
+			<option value="letter_portrait">Letter - Portrait</option>
+			<option value="poster_landscape">Poster - Landscape</option>
+			<option value="poster_portrait">Poster - Portrait</option>
+		</input>
+
+		<input type="select" name="quality" title="Image Quality: ">
+			<option value="1">Standard</option>
+			<option value="2">Higher</option>
+			<option value="3">Highest</option>
+		</input>
+
+		<input type="select" name="scale" title="Preserve Scale: ">
+			<option value="preserve">Yes</option>
+			<option value="no">No</option>
+		</input>
+	</service>
+
+	<service name="identify" title="Identify" display="false">
+		<url>php/identify.php</url>
+		<step type="spatial" name="shape" line="false" polygon="false" jump-start="true" default="point">
+			<input type="visiblelayers" name="layers"/>
+		</step>
+	</service>
+
+	<service name="birdseye" display="false" target="_blank">
+		<url>birdseye/birdseye.html</url>
+		<step type="spatial" name="xy" line="false" polygon="false" jump-start="true" default="point" format='delim' reproject="EPSG:4326">
+		</step>
+	</service>
+
+
+	<service name="feature_report" display="false">
+		<url>php/feature_report</url>
+		<input type="hidden" name="src"/>
+		<input type="hidden" name="PIN"/>
+	</service>
+
+	<service name="select" title="Select">
+		<url>php/select.php</url>
+
+		<!-- Send a selection shape + the visible layers list to the service -->
+		<step type="spatial" name="shape" line="false" polygon="true" point="false" show-tools="true" default="polygon" edit-polygon="true" required="true" box="true">
+
+			<header><![CDATA[
+			<br/>
+			Use the drawing tools to create your selection area.<br/><br/>
+			]]></header>
+
+			<input type="visiblelayers" name="layers"/>
+
+			<!-- 
+				Option values should be the mapbook path to the layer.
+				This only supports 'mapserver'-type layers.
+			-->
+			<input type="hidden" name="select_layer" value="parcels/all"/>
+
+			<input type="user" name="shape_buffer" title="Buffer Selection Shape (ft):">0</input>
+
+			<input type="select" name="query_layer" title="Using Features In:">
+
+				<option value="parcels/all">Parcels</option>
+				<option value="pipelines/pipe_lines">Pipelines</option>
+			</input>
+			<input type="user" name="selection_buffer" title="Buffer Selected Features (ft):">0</input>
+
+			<footnote><![CDATA[
+			]]></footnote>
+		</step>
+	</service>
+
+
+
+	<service name="popups" display="false">
+		<url>php/popups.php</url>
+		<step type="spatial" name="shape" line="false" polygon="false" jump-start="true" default="point">
+			<header><![CDATA[
+			Click on the map to show a popup about the features.
+			]]></header>
+			<input type="hidden" name="layer"/>
+		</step>
+	</service>
+
+
+
+	<service name="search_parcels">
+		<url>php/itemquery.php</url>
+		<step type="input">
+			<input type="select" name="qitem" title="Search By:">
+				<option value="OWNER_NAME">Owner</option>
+				<option value="PID">Parcel ID</option>
+			</input>
+			<input type="user" name="qstring" title=""/>
+			<input type="hidden" name="layer" value="parcels/all"/>
+			<input type="hidden" name="zoom_to_first" value="false"/>
+			<input type="hidden" name="highlight" value="true"/>
+		</step>
+	</service>
+
+
+	<!-- 
+		The catalog defines how the layers will be displayed in the catalog tab.
+	-->
+	<layer-controls>
+		<layer-control name="popups" service-name="popups" layer-input="layer" on="false" tip="Show Popups for %LAYER%"/> 
+	</layer-controls>
+	<catalog>
+		<group title="Combined Layer Testing" expand="true">
+			<layer title="Feedlots" src="allcounty/feedlots" legend="true"/>
+			<layer title="Firestations and Pipelines" src="allcounty/firestations:allcounty/pipelines" legend="true"/>
+		</group>
+
+		<group title="County Layers" expand="true">
+			<layer title="Feedlots" src="feedlots/all" legend="true"/>
+			<layer title="Pipelines" src="pipelines/all" legend="true" popups="true"/>
+			<layer title="Fire Stations" src="fire/firestations" legend="true"/>
+			<layer title="Parcels" src="parcels/all" status="on" popups="true" legend="true" show-legend="true"/>			
+			<layer title="Minneapolis Area Water" src="metro/stream_net_l"/>
+			<layer title="Minneapolis Area Watersheds" src="water/all"/>			
+		</group>
+		
+		<group title="Basemap Layers" expand="true">
+			<layer title="Nexrad Radar" src="weather/nexrad-n0r" tip="Weather Radar"/>
+			<layer title="USGS Gaging Stations" src="basemap/USGSGagingStation" status="on" legend="true"/>
+			<layer title="MN Cities &amp; Labels" src="basemap/city_poly:basemap/city_labels" status="on" tip="This layer is visible at 1:1,000,000 scale." maxscale="1000000" minscale="500" legend="true"/>
+			<layer title="MN County &amp; Labels" src="basemap/county_borders:basemap/county_labels" status="on" legend="true"/>
+			<layer title="State Boundaries" src="states/all" status="on" legend="true"/>
+		</group>
+
+		<group title="Backgrounds" expand="true" multiple="false">
+			<layer title="MN USGS Quads" src="lmic_wmsz/drg24"/>
+			<layer title="Minneapolis Aerials" src="lmic/metro" status="off"/>			
+			<layer title="MN 2008 Aerials" src="lmic/fsa2008" status="on"/>
+			<layer title="MN 2008 CIR Aerials" src="lmic/cir2008" status="off"/>			
+			<layer title="MN 2003 Aerials" src="lmic/fsa" status="off"/>
+			<layer title="MN USGS DOQ" src="lmic/doq" status="off"/>			
+			<layer title="NASA Blue Marble" src="nasa/global_mosaic" status="off"/>
+			<layer title="NASA Blue Marble" src="nasa2/global_mosaic" status="off"/>
+		</group>
+	</catalog>
+
+	<!--
+		The toolbar defines which services are referneces in the toolbar
+	-->
+	<toolbar>
+		<tool name="previous" title="Previous Extent" type="internal" action="previous" selectable="false"/>
+		<tool name="next" title="Next Extent" type="internal" action="next" selectable="false"/>
+		<tool name="fullextent" title="Zoom to Full Extent" type="internal" action="fullextent" selectable="false"/>
+		<tool name="pan" title="Pan" type="internal" action="pan"/>
+		<tool name="zoomin" title="Zoom In" type="internal" action="zoomin" selected="true"/>
+		<tool name="zoomout" title="Zoom Out" type="internal" action="zoomout"/>
+		<tool name="identify" title="Identify" type="service" service="identify"/>
+		<tool name="birdseye" title="Birdseye" type="service" service="birdseye"/>
+		<tool name="select" title="Select" type="service" service="select"/>
+		<!-- javascript type tools can run arbitrary javascript -->
+		<tool name="clear" title="Clear Selection" type="javascript" selectable="false">
+			GeoMOOSE.changeLayerVisibility('highlight/all', false);
+		</tool>
+
+		<tool name="measure" title="Measure" type="internal" action="measure"/>
+		<tool name="measurearea" title="Measure Area" type="internal" action="measurearea"/>
+		<tool name="search_parcels" title="Search Parcels" type="service" service="search_parcels" selectable="false"/>
+
+		<drawer>
+			<tool name="draw_polygon" title="Draw Polygon" type="internal" action="draw_polygon"/>
+			<tool name="draw_line" title="Draw Line" type="internal" action="draw_line"/>
+			<tool name="draw_point" title="Draw Point" type="internal" action="draw_point"/>
+			<tool name="draw_remove" title="Remove Drawing" type="internal" action="draw_remove"/>
+			<tool name="draw_edit" title="Edit Drawing" type="internal" action="draw_edit_shapes"/>
+			<tool name="draw_edit_attributes" title="Edit Attributes" type="internal" action="draw_edit_attributes"/>
+			<tool name="clear_drawings" title="Clear Drawings" type="internal" action="clear_drawings" selectable="false"/>
+		</drawer>
+
+		<tool name="print" title="Print" type="service" service="print" selectable="false"/>
+	</toolbar>
+</mapbook>

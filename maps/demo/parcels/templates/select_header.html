@@ -1,0 +1,9 @@
+<!-- MapServer Template -->
+<a target="_blank" href="php/mailing_labels.php?queryid=[QUERYID]&output=pdf">PDF Mailing Labels</a><br/>
+<a target="_blank" href="php/mailing_labels.php?queryid=[QUERYID]&output=html">HTML Mailing Labels</a><br/>
+<a target="_blank" href="php/mailing_labels.php?queryid=[QUERYID]&output=csv">CSV Mailing Labels</a><br/>
+<br/>
+<div style="display: [SHOW_FOLLOWUP]"/>
+<a href="javascript:GeoMOOSE.startService('buffered_select_followup', {shape: '[SHAPE_WKT]', select_layer: '[SELECT_LAYER]', query_layer: '[SELECT_LAYER]', selection_buffer: [SELECTION_BUFFER]})">Buffer these results</a>
+<br/><br/>
+</div>

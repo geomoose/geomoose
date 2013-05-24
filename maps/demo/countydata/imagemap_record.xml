@@ -1,0 +1,6 @@
+<popup shape='circle' coords='[shpxy xf="," proj=image],5'>
+	<title>Fire Station</title>
+	<id>Id-[Dak_GIS__1]</id>
+	<item title="Address 1:">[Dak_GIS__1]</item>
+	<item title="Address 2:">[Dak_GIS__4], [Dak_GIS__3]</item>
+</popup>

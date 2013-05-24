@@ -1,0 +1,39 @@
+#
+# File: lmic_wms.map
+# Reprojects a WMS service from native (UTM-15N) into Web Mercator
+# for integrating with multiple datasets.
+#
+
+MAP
+	INCLUDE "../../geomoose_globals.map"
+
+	WEB
+		INCLUDE "../../temp_directory.map"
+		METADATA
+			'ows_title' 'Reprojection service for LMIC WMS layers'
+			'ows_srs' 'EPSG:26915 EPSG:4326 EPSG:900913 EPSG:3857'
+			'ows_enable_request' '*'
+		END
+
+	END
+
+	PROJECTION
+		"init=epsg:26915"
+	END
+
+	LAYER
+		STATUS ON
+		NAME "met10"
+		CONNECTION "http://geoint.lmic.state.mn.us/cgi-bin/wmsll"
+		CONNECTIONTYPE WMS
+		TYPE RASTER
+
+		METADATA
+			"wms_srs" "EPSG:26915"
+			"wms_name" "met10"
+			"wms_server_version" "1.1.1"
+			"wms_format" "image/jpeg"
+		END
+	END
+END
+

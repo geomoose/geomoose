@@ -1,0 +1,15 @@
+<!-- MapServer Template -->
+<tr bgcolor="#AA55AA">
+	<td>Feature:</td><td>[feature_id]</td>
+</tr>
+<tr>	
+	<td>Attribute1:</td><td>[attribute1]</td>
+</tr>
+<tr>
+<td>
+	<a href="javascript:GeoMOOSE.startService('modify_point', {'feature:id' : '[feature_id]','feature:wkb_geometry' : '[wkt_geometry]', 'feature:attribute1' : '[attribute1]', 'feature:attribute2' : '[attribute2]'})">Edit</a>
+</td>
+<td>
+	<a href="javascript:if(confirm('Are you sure you want to delete this?')) { GeoMOOSE.startService('delete_point', {'feature:id' : '[feature_id]'}); }">Delete</a>
+</td>
+</tr>
