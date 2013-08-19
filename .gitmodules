@@ -6,4 +6,4 @@
 	url = https://github.com/geomoose/geomoose-services.git
 [submodule "js"]
 	path = js
-	url = https://github.com:geomoose/geomoose-js.git
+	url = https://github.com/geomoose/geomoose-js.git
