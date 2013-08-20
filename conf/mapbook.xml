@@ -268,7 +268,7 @@
 		<url>php/select.php</url>
 
 		<!-- Send a selection shape + the visible layers list to the service -->
-		<step type="spatial" showTools="true" name="shape" line="true" polygon="true" point="true" default="polygon" edit-polygon="false" pan="false">
+		<step type="spatial" show-tools="true" name="shape" line="true" polygon="true" point="true" default="polygon" edit-polygon="false" pan="false">
 
 			<header><![CDATA[Create a selection area by clicking on the map.]]></header>
 
