@@ -99,7 +99,7 @@
 	<map-source name="parcels" type="mapserver">
 		<file>./demo/parcels/parcels.map</file>
 		<layer name="parcels" status="on"/>
-		<param name="FORMAT" value="image/png;bits=8"/>
+		<param name="FORMAT" value="image/png; mode=8bit"/>
 	</map-source>
 
 	<map-source name="borders" type="mapserver" reference="true">

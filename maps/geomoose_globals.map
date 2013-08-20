@@ -6,39 +6,6 @@
 
 	#TRANSPARENT TRUE
 
-	# Does this stuff even need to be set in MS 6.x?  JSK
-	OUTPUTFORMAT
-		NAME 'agg/png'
-		DRIVER AGG/PNG
-		IMAGEMODE RGBA
-		FORMATOPTION "TRANSPARENT=TRUE"
-		TRANSPARENT ON
-		MIMETYPE "image/png"
-	END 
-
-	OUTPUTFORMAT
-		NAME "png8"
-		DRIVER AGG/PNG8
-
-		MIMETYPE "image/png;bits=8"
-		EXTENSION "png"
-
-		TRANSPARENT ON
-		IMAGEMODE RGBA
-		FORMATOPTION "QUANTIZE_FORCE=on"
-		FORMATOPTION "QUANTIZE_COLORS=256"
-		FORMATOPTION "INTERLACE=OFF"
-	END
-
-	OUTPUTFORMAT
-		NAME 'agg/jpeg'
-		DRIVER AGG/JPEG
-		IMAGEMODE RGB
-		FORMATOPTION "TRANSPARENT=FALSE"
-		TRANSPARENT OFF
-	END
-
-
 	# IE6 is dead. Microsoft says so, Google says so, Facebook says so, I say so.
 	# http://www.ie6countdown.com/
 	IMAGETYPE png8 #agg/png
