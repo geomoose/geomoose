@@ -415,9 +415,6 @@
 
 		<tool name="identify" title="Identify" type="service" service="identify" cursor="url(./cursors/identify2.gif) 9 9,url(./cursors/identify2.cur),help"/>
 
-		<tool name="clear" title="Clear Selection" type="javascript" selectable="false">
-			GeoMOOSE.changeLayerVisibility('highlight/highlight', false);
-		</tool>
 <!--		<tool name="select" title="Select" type="service" service="select"/> -->
 		<tool name="birdseye" title="Bird's Eye View" type="service" selectable="true" service="birdseye"/>
 		<tool name="streetview" title="Google Street View" type="service" service="streetview" selectable="true"/>
@@ -438,6 +435,10 @@
 
 		<tool name="buffered_select" title="Select Features" type="service" service="buffered_select" show-label="true"/>
 		<tool name="search_parcels" title="Search Parcels" type="service" service="search_parcels" selectable="false" show-label="true"/>
+		<tool name="clear" title="Clear Selection" type="javascript" selectable="false">
+			GeoMOOSE.changeLayerVisibility('highlight/highlight', false);
+		</tool>
+
 
 	</toolbar>
 </mapbook>
