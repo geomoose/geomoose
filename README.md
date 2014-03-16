@@ -37,7 +37,8 @@ This directory contains the following files and subdirectories:
 
 You can checkout the full source code with your choice of:
 
+```
 git clone --recursive git://github.com/geomoose/geomoose.git
 git clone --recursive git@github.com:geomoose/geomoose.git
 git clone --recursive https://github.com/geomoose/geomoose.git
-
+```
