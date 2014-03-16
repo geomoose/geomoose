@@ -282,15 +282,12 @@
 				<option value="parcels/parcels">Parcels</option>
 			</input>
 			
-			<!--
-			<input type="user" name="select_buffer" title="Buffer Selected Features (m)">0</input>
-			-->
-
-			<input type="length" name="selection_buffer" title="Buffer Selection Shape">0</input>
+			<input type="length" name="selection_buffer" title="Buffer Selection Shape by">0</input>
 			<input type="select" name="query_layer" title="Using Features In">
 				<option value="">No Layer</option>
 				<option value="parcels/parcels">Parcels</option>
 			</input>
+			<input type="length" name="shape_buffer" title="Buffer Features by">0</input>
 			<input type="projection" name="projection"/>
 
 			<footnote><![CDATA[
