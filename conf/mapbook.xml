@@ -21,6 +21,7 @@
 		]]></param>
 		<param name="max_extent">-20037508.342789,-20037508.342789,20037508.342789,20037508.342789</param>
 		<param name="initial_extent">-10384069.859924,5538318.529767,-10356632.423788,5563580.927174</param>
+		<param name="table_results">{"layer":"parcels/parcels", "name":"COUNTY_ID", "alias":"County ID", "width":"100px"}, {"layer":"parcels/parcels", "name":"PIN", "alias":"PIN Numer"}, {"layer":"parcels/parcels", "name":"ACRES_POLY", "alias":"Acres"}, {"layer":"parcels/parcels", "name":"OWNER_NAME", "alias":"Owner"}</param>
 		<param name="always_scroll_zoom">true</param>
 		<param name="measure_tool.show_area_segments">false</param>
 
@@ -56,19 +57,35 @@
 	<map-source name="sketch" type="vector" active="true" status="on">
 		<style type="stylemap"><![CDATA[
 		{
+			"fillColor" : "${fill_color}",
+			"fillOpacity" : "${opacity}",
 			"label" : "${title}",
 			"strokeColor" : "${line_color}",
-			"fillColor" : "${fill_color}"
+			"strokeOpacity" : "${line_opacity}",
+			"strokeDashstyle" : "${line_style}",
+			"strokeWidth" : "${line_width}",
+			"fontColor" : "${font_color}",
+			"fontSize" : "${font_size}",
+			"fontFamily" : "${font_style}",
+			"graphicName" : "${marker_style}",
+			"pointRadius" : "${marker_radius}"
 		}
 		]]></style>
-		<attribute name="title" type="user" default-value="" label="Feature Label:"/>
-		<attribute name="line_color" type="color" default-value="#ff0000" label="Stroke Color:"/>
-		<attribute name="fill_color" type="color" default-value="#ff0000" label="Fill Color:"/>
-		<!--
-		<attribute name="opacity" type="select" default-value="100" label="Opacity (%):"/>
-		<attribute name="line_opacity" type="select" default-value="100" label="Stroke Opacity (%):"/>
-		-->
-		<attribute name="label_only" type="checkbox" default-value="false" label="Only show label in print?"/>
+		<attribute name="fill_color" type="color" default-value="#ff0000" label="Fill Color: "/>
+		<attribute name="opacity" type="user" default-value="0.4" display-value="40" small="true" tip=" 1-100" label="Fill Opacity: "/>		
+		<attribute type="break"/>
+		<attribute name="marker_style" type="select" dropdowns="circle,cross,square,star,triangle,x" default-value="circle" label="Marker Style: "/>
+		<attribute name="marker_radius" type="user" default-value="6" label="Marker Radius: " small="true" tip=" Pixels"/>		
+		<attribute type="break"/>
+		<attribute name="line_color" type="color" default-value="#ff0000" label="Stroke Color: "/>
+		<attribute name="line_opacity" type="user" default-value="1" display-value="100" small="true" tip=" 1-100" label="Stroke Opacity: "/>
+		<attribute name="line_style" type="select" default-value="solid" dropdowns="dot,dash,dashdot,longdash,longdashdot,solid" label="Stroke Pattern: "/>
+		<attribute name="line_width" type="user" default-value="1" label="Stroke Width: " small="true" tip=" Pixels"/>
+		<attribute type="break"/>
+		<attribute name="title" type="user" default-value="" label="Feature Label: "/>
+		<attribute name="font_color" type="color" default-value="#000000" label="Font Color: "/>
+		<attribute name="font_size" type="user" default-value="12" label="Font Size: " small="true" tip=" Pixels"/>
+		<attribute name="font_style" type="select" dropdowns="arial,times,courier,verdana" default-value="arial" label="Font: "/>
 	</map-source>
 
 	<map-source name="census_cities" type="wfs">
@@ -89,7 +106,47 @@
 		<geometry-name>wkb_geometry</geometry-name>
 		<schema><![CDATA[http://localhost:8080/geoserver/GeoMOOSE_Testing/wfs?service=WFS&version=1.1.0&request=DescribeFeatureType&typeName=GeoMOOSE_Testing:census_cities]]></schema>
 	</map-source>
-
+	
+	<map-source name="highlightPoint" type="wfs" fixed="true">
+		<style type="stylemap"><![CDATA[
+		{
+			"strokeColor" : "#00FFFF",
+			"fillColor" : "transparent"
+		}
+		]]></style>
+		<url></url>
+		<feature-type>selectedPoint</feature-type>
+	</map-source>
+	<map-source name="highlightLine" type="wfs" fixed="true">
+		<style type="stylemap"><![CDATA[
+		{
+			"strokeColor" : "#00FFFF"
+		}
+		]]></style>
+		<url></url>
+		<feature-type>selectedLine</feature-type>
+	</map-source>
+	<map-source name="highlightPoly" type="wfs" fixed="true">
+		<style type="stylemap"><![CDATA[
+		{
+			"strokeColor" : "#00FFFF",
+			"fillColor" : "transparent",
+			"strokeWidth" : "2"
+		}
+		]]></style>
+		<url></url>
+		<feature-type>selectedPoly</feature-type>
+	</map-source>
+	<map-source name="highlightSelect" type="wfs" fixed="true">
+		<style type="stylemap"><![CDATA[
+		{
+			"strokeWidth" : "4"
+		}
+		]]></style>
+		<url></url>
+		<feature-type>selected_with_features</feature-type>
+	</map-source>
+	
 	<map-source name="highlight" type="mapserver">
 		<file/>
 		<layer name="highlight"/>
@@ -258,22 +315,18 @@
 			<input type="hidden" name="shape"/>
 			<input type="hidden" name="select_layer"/>
 			<input type="hidden" name="query_layer"/>
-			<input type="hidden" name="selection_buffer"/>
-			<input type="length" name="shape_buffer" title="Buffer Features By: "/>
+			<input type="length" name="selection_buffer" title="Buffer Features By: "/>
 			<input type="projection" name="projection"/>
+			<input type="hidden" name="type" value="WFS"/>
 		</step>
 	</service>
-
+	
 	<service name="buffered_select" title="Select Features">
 		<url>php/select.php</url>
-
 		<!-- Send a selection shape + the visible layers list to the service -->
-		<step type="spatial" show-tools="true" name="shape" line="true" polygon="true" point="true" default="polygon" edit-polygon="false" pan="false">
-
+		<step type="spatial" showTools="true" name="shape" line="true" polygon="true" point="true" default="polygon" edit-polygon="false" pan="false">
 			<header><![CDATA[Create a selection area by clicking on the map.]]></header>
-
 			<input type="visiblelayers" name="layers"/>
-
 			<!-- 
 				Option values should be the mapbook path to the layer.
 				This only supports 'mapserver'-type layers.
@@ -281,20 +334,28 @@
 			<input type="select" name="select_layer" title="Select features from:">
 				<option value="parcels/parcels">Parcels</option>
 			</input>
-			
-			<input type="length" name="selection_buffer" title="Buffer Selection Shape by">0</input>
+			<input type="length" name="selection_buffer" title="Buffer Selection Shape">0</input>
 			<input type="select" name="query_layer" title="Using Features In">
 				<option value="">No Layer</option>
 				<option value="parcels/parcels">Parcels</option>
 			</input>
 			<input type="length" name="shape_buffer" title="Buffer Features by">0</input>
 			<input type="projection" name="projection"/>
-
-			<footnote><![CDATA[
-			]]></footnote>
+			<input type="hidden" name="type" value="WFS"/>
+			<footnote><![CDATA[]]></footnote>
 		</step>
 	</service>
-
+	
+	<service name="mailing_labels" keep-others="true" display="false" target="_blank" title="Print Mailing Labels">
+		<url>php/mailing_labels.php</url>
+		<step type="input">
+			<input type="hidden" name="qstring"/>
+			<input type="hidden" name="output"/>
+			<input type="hidden" name="qitem"/>
+			<input type="hidden" name="qlayers" value="parcels/parcels"/>
+		</step>
+	</service>
+	
 	<service name="popups" display="false">
 		<url>php/popups.php</url>
 		<step type="spatial" name="shape" line="false" polygon="false" jump-start="true" default="point">
@@ -346,6 +407,8 @@
 				<option value="lt">Less Than</option>
 			</input>
 			<input type="user" name="value1" title=""/>
+			<input type="projection" name="projection"/>
+			<input type="hidden" name="type" value="WFS"/>
 		</step>
 	</service>
 
@@ -421,6 +484,8 @@
 			<tool name="draw_polygon" title="Add Polygon" type="layer" action="polygon" show-label="true"/>
 			<tool name="draw_line" title="Add Line" type="layer" action="line" show-label="true"/>
 			<tool name="draw_point" title="Add Point" type="layer" action="point" show-label="true"/>
+			<tool name="draw_point" title="Add Text" type="layer" action="text" show-label="true"/>
+			<tool name="draw_move_shape" title="Move Feature" type="layer" action="move" show-label="true"/>
 			<tool name="draw_remove" title="Remove Feature" type="layer" action="remove" show-label="true"/>
 			<tool name="draw_edit" title="Edit Features" type="layer" action="modify" show-label="true"/>
 			<tool name="draw_edit_attributes" title="Edit Attributes" type="layer" action="edit_attributes" show-label="true"/>
@@ -433,9 +498,12 @@
 		<tool name="buffered_select" title="Select Features" type="service" service="buffered_select" show-label="true"/>
 		<tool name="search_parcels" title="Search Parcels" type="service" service="search_parcels" selectable="false" show-label="true"/>
 		<tool name="clear" title="Clear Selection" type="javascript" selectable="false">
+			GeoMOOSE.changeLayerVisibility('highlightPoint', false);
+			GeoMOOSE.changeLayerVisibility('highlightLine', false);
+			GeoMOOSE.changeLayerVisibility('highlightPoly', false);
+			GeoMOOSE.changeLayerVisibility('highlightSelect', false);
 			GeoMOOSE.changeLayerVisibility('highlight/highlight', false);
+			GeoMOOSE.hideParcelDataTable();
 		</tool>
-
-
 	</toolbar>
 </mapbook>
