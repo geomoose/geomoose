@@ -97,6 +97,8 @@ MAP
 
 			# query.php / "Search Parcels" functionality.
 			'itemquery'	'templates/search_result.html'
+			'itemquery_header'  'templates/search_header.html'
+			'itemquery_footer' 	'templates/search_footer.html'
 			'itemquery-filter'	'/.*[qstring].*/i' 
 			'qstring_validation_pattern' '.'
 			

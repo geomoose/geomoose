@@ -1,22 +1,27 @@
 <!-- MapServer Template -->
-<table>
-<tr>
-<td><b>PIN:</b></td>
-<td>[PIN]</td>
-</tr>
-<tr>
-<td><b>Owner Name:</b></td>
-<td>[OWNER_NAME]</td>
-</tr>
-<tr>
-<td><b>Est. Market Value:</b></td>
-<td>[EMV_TOTAL]</td>
-</tr>
-<tr>
-<td><b>Acres:</b></td>
-<td>[ACRES_POLY]</td>
-</tr>
-<tr>
-<td colspan="2"><hr/></td>
-</tr>
-</table>
+<div id="div_[geomoose_id]">
+	<table border="0" cellpadding="1" cellspacing="2" style="width:100%;">
+		<tr>
+			<td colspan="2"><hr></td>
+		</tr><tr>
+			<td colspan="2" style="background-color:#DDDDDD;padding-left:4px;">
+				<img style="cursor:pointer;" src='images/toolbar/zoomin.png' class='noborder' title='Zoom to taxlot' alt='Zoom to taxlot' onclick="GeoMOOSE.zoomToFeature('selectedPoly.[geomoose_id]');"/>
+				<img src='images/toolbar/select.png' style="cursor:pointer;" title="Buffer taxlot" alt="Buffer taxlot" onclick="GeoMOOSE.startService('buffered_select_followup', {shape: GeoMOOSE.getFeature('selectedPoly.[geomoose_id]'), select_layer: '[SELECT_LAYER]', query_layer: '[QUERY_LAYER]', selection_buffer: [SELECTION_BUFFER]})"/>
+				<img src='images/toolbar/clear.png' style="cursor:pointer;" title='Remove from selection' alt='Remove from selection' onclick='GeoMOOSE.removeFeature("selectedPoly.[geomoose_id]");'/>
+				<img style="cursor:pointer;" src='images/toolbar/services.png' class='noborder' title='Highlight taxlot' alt='Highlight taxlot' onclick="GeoMOOSE.selectFeature('selectedPoly.[geomoose_id]');"/>
+			</td>
+		</tr><tr>
+			<td><b>PIN:</b></td>
+			<td>[PIN]</td>
+		</tr><tr>
+			<td><b>Owner Name:</b></td>
+			<td>[OWNER_NAME]</td>
+		</tr><tr>
+			<td><b>Est. Market Value:</b></td>
+			<td>[EMV_TOTAL]</td>
+		</tr><tr>
+			<td><b>Acres:</b></td>
+			<td>[ACRES_POLY]</td>
+		</tr>
+	</table>
+</div>

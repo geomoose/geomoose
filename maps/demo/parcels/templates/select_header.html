@@ -1,9 +1,18 @@
 <!-- MapServer Template -->
-<a target="_blank" href="php/mailing_labels.php?queryid=[QUERYID]&output=pdf">PDF Mailing Labels</a><br/>
-<a target="_blank" href="php/mailing_labels.php?queryid=[QUERYID]&output=html">HTML Mailing Labels</a><br/>
-<a target="_blank" href="php/mailing_labels.php?queryid=[QUERYID]&output=csv">CSV Mailing Labels</a><br/>
-<br/>
-<div style="display: [SHOW_FOLLOWUP]"/>
-<a href="javascript:GeoMOOSE.startService('buffered_select_followup', {shape: '[SHAPE_WKT]', select_layer: '[SELECT_LAYER]', query_layer: '[SELECT_LAYER]', selection_buffer: [SELECTION_BUFFER]})">Buffer these results</a>
-<br/><br/>
-</div>
+<table border="0" cellpadding="1" cellspacing="2" width="100%">
+	<tr>
+		<td>
+			<b>Results:</b> <span id="numShapes">[foundShapes]</span>
+		</td>
+		<td class="right">
+			<img src='images/toolbar/table-add.png' id="table-icon" style="cursor:pointer;" class='noborder' title='Open results in table' alt='Open results in table' onclick='GeoMOOSE.showParcelDataTable();'/>
+			<img src='images/toolbar/zoomin.png' style="cursor:pointer;" class='noborder' title='Zoom to all results' alt='Zoom to all results' onclick='GeoMOOSE.zoomToHighlight();' />
+			<img src='images/toolbar/select.png' style="cursor:pointer;" title="Buffer all selected parcels" alt="Buffer all selected parcels" onclick="GeoMOOSE.startService('buffered_select_followup', {shape: '[FINAL_SHAPE_WKT]', select_layer: '[SELECT_LAYER]', query_layer: '[QUERY_LAYER]', selection_buffer: [SELECTION_BUFFER]})"/>
+			<img src='images/toolbar/text-csv.png' style="cursor:pointer;" title="Mailing Labels (CSV)" alt="Mailing Labels (CSV)" onclick='GeoMOOSE.startService("mailing_labels",{qstring: GeoMOOSE.resultsToService("highlightPoly", "PIN"), output: "csv", qitem: "PIN"});'/>
+			<img src='images/toolbar/text-csv.png' style="cursor:pointer;" title="Mailing Labels (HTML)" alt="Mailing Labels (HTML)" onclick='GeoMOOSE.startService("mailing_labels",{qstring: GeoMOOSE.resultsToService("highlightPoly", "PIN"), output: "html", qitem: "PIN"});'/>
+			<img src='images/toolbar/text-csv.png' style="cursor:pointer;" title="Mailing Labels (PDF)" alt="Mailing Labels (PDF)" onclick='GeoMOOSE.startService("mailing_labels",{qstring: GeoMOOSE.resultsToService("highlightPoly", "PIN"), output: "pdf", qitem: "PIN"});'/>
+			<img src='images/toolbar/printer.png' style="cursor:pointer;" title="Print" alt="Print" onclick='GeoMOOSE.printInfoDiv("parcel_holder");'/>
+		</td>
+	</tr>
+</table>
+<div id="parcel_holder">
