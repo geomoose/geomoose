@@ -210,7 +210,7 @@
 		</step>
 	</service>
 
-	<service name="identify" title="Identify" display="true">
+	<service name="identify" title="Identify" display="true" display-submit="false">
 		<url>php/identify.php</url>
 		<step type="spatial" name="shape" line="false" polygon="false" jump-start="true" default="point" box="true" pan="false">
 			<header>
