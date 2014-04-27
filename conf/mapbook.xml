@@ -21,7 +21,6 @@
 		]]></param>
 		<param name="max_extent">-20037508.342789,-20037508.342789,20037508.342789,20037508.342789</param>
 		<param name="initial_extent">-10384069.859924,5538318.529767,-10356632.423788,5563580.927174</param>
-		<param name="always_scroll_zoom">true</param>
 		<param name="measure_tool.show_area_segments">false</param>
 
 		<param name="layer_controls.legend.on">false</param>
@@ -29,14 +28,11 @@
 		<param name="layer_controls.legend.on">true</param>	
 
 		<param name="group_checkboxes">false</param>
-
-		<param name="default_tab">Catalog</param>
 	      
 		<param name="ground_units">m</param>
 		<param name="maxResolution">156543.03390625</param>
 		<param name="numZoomLevels">20</param>
 
-		<param name="reference_map.enabled">true</param>
 		<param name="coordinate_display.usng">true</param>
 		<param name="jumpto_scales"><![CDATA[
 		{
@@ -352,10 +348,6 @@
 	<!-- 
 		The catalog defines how the layers will be displayed in the catalog tab.
 	-->
-	<layer-controls>
-		<layer-control name="popups" service-name="popups" layer-input="layer" on="false" tip="Show Popups for %LAYER%"/> 
-	</layer-controls>
-
 	<catalog>
 		<!--
 		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false"></layer>
@@ -380,13 +372,13 @@
 		<group title="Backgrounds" expand="true" multiple="false">
 			<layer title="Reprojected Regional Aerial" src="lmic/met10" legend="false" fade="false" unfade="false"/>
 
-			<layer title="Google Streets" src="google_streets/all" status="off" legend="false" fade="false" unfade="false"/>
-			<layer title="Google Physical" src="google_physical/all" status="off" legend="false" fade="false" unfade="false"/>
-			<layer title="Google Hybrid" src="google_hybrid/all" status="off" legend="false" fade="false" unfade="false"/>
-			<layer title="Google Satellite" src="google_satellite/all" status="off" legend="false" fade="false" unfade="false"/>
+			<layer title="Google Streets" src="google_streets/all" legend="false" fade="false" unfade="false"/>
+			<layer title="Google Physical" src="google_physical/all" legend="false" fade="false" unfade="false"/>
+			<layer title="Google Hybrid" src="google_hybrid/all" legend="false" fade="false" unfade="false"/>
+			<layer title="Google Satellite" src="google_satellite/all" legend="false" fade="false" unfade="false"/>
 
-			<layer title="MapQuest OSM" src="mapquest/osm" status="off" legend="false" fade="false" unfade="false"/>
-			<layer title="MapQuest Satellite Tiles" src="mapquest2/sat" status="off" legend="false" fade="false" unfade="false"/>
+			<layer title="MapQuest OSM" src="mapquest/osm" legend="false" fade="false" unfade="false"/>
+			<layer title="MapQuest Satellite Tiles" src="mapquest2/sat" legend="false" fade="false" unfade="false"/>
 
 
 			<layer title="USGS DOQs" src="usgs/DOQ" legend="false" fade="false" unfade="false"/>
