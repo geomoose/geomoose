@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2012, Dan "Ducky" Little & GeoMOOSE.org
+# Copyright (c) 2009-2014, Dan "Ducky" Little & GeoMOOSE.org
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,7 +19,7 @@
 # THE SOFTWARE.
 
 MAP
-	NAME 'parcels'
+	NAME 'utf8_polys'
 	SIZE 800 650
 	STATUS ON
 	EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
@@ -30,7 +30,7 @@ MAP
 
 	WEB
 		METADATA
-			'ows_title' 'Parcel Maps'
+			'ows_title' 'International Characters Testing Layer'
 			'ows_srs' 'EPSG:26915 EPSG:4326 EPSG:900913 EPSG:3857'
 			'ows_enable_request' '*'
 			'ows_onlineresource' 'http://www.geomoose.org'
@@ -52,28 +52,23 @@ MAP
 	END	
   
   	LAYER
-		NAME parcels
-		DATA './parcels.shp'
-		GROUP parcels_group
+		NAME testing 
+		DATA './utf8_polys.shp'
 		STATUS ON
 		TYPE POLYGON
-		LABELITEM 'PIN'
+		LABELITEM 'name'
 		LABELCACHE ON
 		LABELMAXSCALE 20000
-		FILTER ([PARC_CODE] == 1)
 
 		CLASS
-			NAME 'Parcels'
+			NAME 'LanguageSquares'
 			STYLE
 				WIDTH 3
 				COLOR -1 -1 -1
-				OUTLINECOLOR 93 181 53
-				MAXSCALEDENOM 15000
-			END
-			STYLE
-				SIZE 1
-				COLOR -1 -1 -1
-				OUTLINECOLOR 33 106 43
+				# Big yellow outline, this should look ugly
+				# because no one, realistically, should
+				# be including this in an application.
+				OUTLINECOLOR 255 255 0
 			END
 
 			LABEL
@@ -87,27 +82,24 @@ MAP
 				MINFEATURESIZE auto
 				PARTIALS FALSE
 				POSITION cc
+				ENCODING UTF-8
 			END
 		END
 
 
 
 		METADATA
-			# drill-down identify service record.
-	      		'identify_record'	'templates/identify.html'
+			# All 'record' entries will return a 
+			# template that is easy for us to parse.
+			'identify_record' 'utf8_test.html'
+			'itemquery' 'utf8_test.html'
+			'select_record' 'utf8_test.html'
 
-			# query.php / "Search Parcels" functionality.
-			'itemquery'	'templates/search_result.html'
+
+			# mapserver filtering configuration.
 			'itemquery-filter'	'/.*[qstring].*/i' 
 			'qstring_validation_pattern' '.'
 			
-			# Feature reports are stored in the conf/feature_report directory.
-			'feature_report' 'parcel.xml'
-
-	      		'select_record'	'templates/select_result.html'
-			'select_header' 'templates/select_header.html'
-			'popups' 'parcels_popup.html'
-
 		END
 		TOLERANCE 0
 

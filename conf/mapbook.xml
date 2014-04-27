@@ -97,6 +97,15 @@
 		<layer name="parcels" status="on"/>
 		<param name="FORMAT" value="image/png; mode=8bit"/>
 	</map-source>
+	
+	<!-- 
+	 * This map-source is used solely for testing geomose 
+	 * with international characters.
+	 -->
+	<map-source name="international" type="mapserver">
+		<file>./demo/i18n/utf8_polys.map</file>
+		<layer name="testing"/>
+	</map-source>
 
 	<map-source name="borders" type="mapserver" reference="true">
 		<file>./demo/statedata/basemap.map</file>
