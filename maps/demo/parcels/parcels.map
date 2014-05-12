@@ -19,7 +19,6 @@
 # THE SOFTWARE.
 
 MAP
-	NAME 'parcels'
 	SIZE 800 650
 	STATUS ON
 	EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
@@ -116,6 +115,27 @@ MAP
 		TEMPLATE "parcels_popup.html"
 
   	  END
+
+ 
+  	LAYER
+		NAME parcel_points
+		GROUP parcel_points
+		DATA './parcel_points.shp'
+		STATUS OFF
+		TYPE POINT 
+		CLASS
+			NAME 'Parcels Points'
+			STYLE
+				SYMBOL 'circle'
+				SIZE 10
+				COLOR 255 0 0
+				OUTLINECOLOR 0 0 0
+			END
+		END
+
+		TOLERANCE 10
+		TEMPLATE "parcels_popup.html"
+	END
   
 END ## end Map
 
