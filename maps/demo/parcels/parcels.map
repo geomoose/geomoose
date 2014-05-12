@@ -34,6 +34,7 @@ MAP
 			'ows_srs' 'EPSG:26915 EPSG:4326 EPSG:900913 EPSG:3857'
 			'ows_enable_request' '*'
 			'ows_onlineresource' 'http://www.geomoose.org'
+			'wms_feature_info_mime_type' 'text/html'
 		END
 	END
 
@@ -110,6 +111,9 @@ MAP
 
 		END
 		TOLERANCE 0
+
+		# this is required for WMS popups.
+		TEMPLATE "parcels_popup.html"
 
   	  END
   
