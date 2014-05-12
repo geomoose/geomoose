@@ -92,6 +92,13 @@
 		<param name="TRANSPARENT" value="TRUE"/>
 	</map-source>
 
+	<!-- Demo of parcels as points. -->
+	<map-source name="parcel_points" type="mapserver">
+		<file>./demo/parcels/parcels.map</file>
+		<layer name="parcel_points"/>
+		<param name="FORMAT" value="image/png; mode=8bit"/>
+	</map-source>
+
 	<map-source name="parcels" type="mapserver">
 		<file>./demo/parcels/parcels.map</file>
 		<layer name="parcels" status="on"/>
@@ -374,6 +381,8 @@
 					<!--
 					<legend>images/logo_mini.gif</legend>
 					-->
+				</layer>
+				<layer title="Parcel Points" src="parcel_points/parcel_points" popups="true">
 				</layer>
 				<layer title="City and County Boundaries" src="borders/city_labels:borders/county_labels:borders/county_borders:borders/city_poly"/>
 			</group>
