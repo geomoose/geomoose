@@ -369,7 +369,7 @@
 
 			<group title="County Layers" expand="false">
 
-				<layer title="Parcels" src="parcels/parcels" metadata="true" legend="true" tip="this a parcel layer, y'all" show-legend="true">
+				<layer title="Parcels" src="parcels/parcels" metadata="true" legend="true" tip="this a parcel layer, y'all" show-legend="true" activate="true">
 					<metadata>http://www.geomoose.org/docs/</metadata>
 					<!--
 					<legend>images/logo_mini.gif</legend>
@@ -439,6 +439,8 @@
 		<tool name="clear" title="Clear Selection" type="javascript" selectable="false">
 			GeoMOOSE.changeLayerVisibility('highlight/highlight', false);
 		</tool>
+
+		<tool name="popups" title="Popups" type="layer" action="popups" show-label="true"/>
 
 
 	</toolbar>
