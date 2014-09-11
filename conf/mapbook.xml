@@ -168,7 +168,6 @@
 		<file>./demo/wms/lmic.map</file>
 		<layer name="met10"/>
 	</map-source>
-
 	<map-source name="google_physical" type="google" google-type="physical">
 		<layer name="all"/>
 	</map-source>
@@ -382,7 +381,7 @@
 					<legend>images/logo_mini.gif</legend>
 					-->
 				</layer>
-				<layer title="Parcel Points" src="parcel_points/parcel_points" popups="true">
+				<layer title="Parcel Points" src="parcel_points/parcel_points" popups="true" minscale="6000" maxscale="20000">
 				</layer>
 				<layer title="City and County Boundaries" src="borders/city_labels:borders/county_labels:borders/county_borders:borders/city_poly"/>
 			</group>
