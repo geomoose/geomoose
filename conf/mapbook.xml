@@ -224,7 +224,7 @@
 		</step>
 	</service>
 
-	<service name="identify" title="Identify" display="true" display-submit="false">
+	<service name="identify" title="Identify" display="true" display-submit="false" clear-highlight="true">
 		<url>php/identify.php</url>
 		<step type="spatial" name="shape" line="false" polygon="false" jump-start="true" default="point" box="true" pan="false">
 			<header>
@@ -278,7 +278,7 @@
 		</step>
 	</service>
 
-	<service name="buffered_select" title="Select Features">
+	<service name="buffered_select" title="Select Features" clear-highlight="true">
 		<url>php/select.php</url>
 
 		<!-- Send a selection shape + the visible layers list to the service -->
@@ -328,7 +328,7 @@
 	</service>
 
 
-	<service name="search_parcels" title="Search">
+	<service name="search_parcels" title="Search" clear-highlight="true">
 		<url>php/query.php</url>
 		<step type="input">
 			<input type="hidden" name="highlight" value="true"/>
