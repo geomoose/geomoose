@@ -367,10 +367,12 @@
 		The catalog defines how the layers will be displayed in the catalog tab.
 	-->
 	<catalog>
-		<!--
-		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false"></layer>
-		<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
-		-->
+		<group title="Drawing and Vector Layers" expand="false">
+			<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false"></layer>
+			<!--
+			<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
+			-->
+		</group>
 		<group title="Overlays">
 
 			<group title="County Layers" expand="false">
