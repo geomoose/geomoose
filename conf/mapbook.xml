@@ -49,7 +49,7 @@
 		The mapping services define the source of the mapping data.
 	-->
 
-	<map-source name="sketch" type="vector" active="true" status="on">
+	<map-source name="sketch" type="vector" active="true" status="on" title="Drawing and Markup">
 		<style type="stylemap"><![CDATA[
 		{
 			"label" : "${title}",
@@ -184,7 +184,7 @@
 		<layer name="all"/>
 	</map-source>
 
-	<map-source name="blank" type="wms" tiled="false">
+	<map-source name="blank" type="wms" tiled="false" hide-from-layers-list="true">
 		<url>./images/blank.gif</url>
 		<layer name="blank" status="on"/>
 	</map-source>
