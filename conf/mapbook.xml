@@ -63,6 +63,11 @@
 		<!--
 		<attribute name="opacity" type="select" default-value="100" label="Opacity (%):"/>
 		<attribute name="line_opacity" type="select" default-value="100" label="Stroke Opacity (%):"/>
+		<attribute name="test_select" type="select" label="Test Select">
+			<option value="A">A</option>
+			<option value="B">B</option>
+			<option value="C">C</option>
+		</attribute>
 		-->
 		<attribute name="label_only" type="checkbox" default-value="false" label="Only show label in print?"/>
 	</map-source>
