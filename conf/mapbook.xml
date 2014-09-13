@@ -367,6 +367,9 @@
 		The catalog defines how the layers will be displayed in the catalog tab.
 	-->
 	<catalog>
+		<!-- Layer for testing international character support. 
+		<layer title="Test International Characters" src="international/testing"/>
+		-->
 		<group title="Drawing and Vector Layers" expand="false">
 			<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false"></layer>
 			<!--
