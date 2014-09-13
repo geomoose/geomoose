@@ -135,6 +135,8 @@ MAP
 
 		TOLERANCE 10
 		TEMPLATE "parcels_popup.html"
+		MINSCALEDENOM 6000
+		MAXSCALEDENOM 20000
 	END
   
 END ## end Map
