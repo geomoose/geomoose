@@ -44,6 +44,8 @@
 		}
 	]]></param>	
 
+		<param name="popups.clearOnMove">false</param>
+
 	</configuration>
 	<!--
 		The mapping services define the source of the mapping data.
@@ -72,23 +74,32 @@
 		<attribute name="label_only" type="checkbox" default-value="false" label="Only show label in print?"/>
 	</map-source>
 
-	<map-source name="census_cities" type="wfs">
+	<map-source name="census_cities" type="wfs"> 
 		<style type="stylemap"><![CDATA[
 		{
 			"strokeColor" : "#00ff00",
-			"label" : "${namelsad}"
+			"label" : "${namelsad10}"
 		}
 		]]></style>
 
-		<url>/geoserver/GeoMOOSE_Testing/ows</url>
+		<url>/mapserver/cgi-bin/tinyows</url>
 
-		<attribute name="geoid10" type="text" label="ID:" default-value="27999"/>
-		<attribute name="namelsad10" type="text" label="Name:"/>
+		<attribute name="geoid10" type="user" label="ID:" default-value="27999"/>
+		<attribute name="namelsad10" type="user" label="Name:"/>
 
-		<feature-namespace>geomoose</feature-namespace>
-		<feature-type>census_cities</feature-type>
+
+		<feature-namespace>http://localhost/geomoose/census_places</feature-namespace>
+		<feature-type>census_places</feature-type>
 		<geometry-name>wkb_geometry</geometry-name>
-		<schema><![CDATA[http://localhost:8080/geoserver/GeoMOOSE_Testing/wfs?service=WFS&version=1.1.0&request=DescribeFeatureType&typeName=GeoMOOSE_Testing:census_cities]]></schema>
+		<schema><![CDATA[http://localhost/mapserver/cgi-bin/tinyows?service=WFS&version=1.1.0&request=DescribeFeatureType&typename=census:census_places]]></schema>
+
+                <popup-template><![CDATA[
+                <div style="font-size: 1.5em">${namelsad}</div>
+                Area of Land: ${aland}<br>
+                Area of Water: ${awater}<br>
+                <br>
+                <a href="https://www.census.gov/2010census/popmap/ipmtext.php?fl=${statefp}:${geoid}" target="_blank">Census Info Page</a>
+                ]]></popup-template>
 	</map-source>
 
 	<map-source name="highlight" type="mapserver">
@@ -131,7 +142,7 @@
 	</map-source>
 
 	<map-source name="iastate" type="wms">
-		<url>http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi</url>
+		<url>http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi?</url>
 		<layer name="nexrad-n0r"/>
 		<param name="FORMAT" value="image/png"/>
 		<param name="TRANSPARENT" value="TRUE"/>
@@ -271,7 +282,7 @@
 	</service>
 
 	<!-- this is called after a standard select in order to buffer the previous selection -->
-	<service name="buffered_select_followup" title="Buffered Select">
+	<service name="buffered_select_followup" title="Buffered Select" clear-highlight="true">
 		<url>php/select.php</url>
 		<step type="input">
 			<input type="hidden" name="shape"/>
