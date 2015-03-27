@@ -45,6 +45,7 @@
 	]]></param>	
 
 		<param name="popups.clearOnMove">false</param>
+		<param name="services.tools.select_feature.status">true</param>
 
 	</configuration>
 	<!--
@@ -386,12 +387,10 @@
 		<!-- Layer for testing international character support. 
 		<layer title="Test International Characters" src="international/testing"/>
 		-->
-		<group title="Drawing and Vector Layers" expand="false">
-			<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false"></layer>
-			<!--
-			<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
-			-->
-		</group>
+		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true"></layer>
+		<!--
+		<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
+		-->
 		<group title="Overlays">
 
 			<group title="County Layers" expand="false">
