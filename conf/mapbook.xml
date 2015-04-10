@@ -185,6 +185,7 @@
 		<file>./demo/wms/lmic.map</file>
 		<layer name="met10"/>
 	</map-source>
+	<!--
 	<map-source name="google_physical" type="google" google-type="physical">
 		<layer name="all"/>
 	</map-source>
@@ -200,6 +201,7 @@
 	<map-source name="google_satellite" type="google" google-type="satellite">
 		<layer name="all"/>
 	</map-source>
+	-->
 
 	<map-source name="blank" type="wms" tiled="false">
 		<url>./images/blank.gif</url>
@@ -387,7 +389,7 @@
 		<!-- Layer for testing international character support. 
 		<layer title="Test International Characters" src="international/testing"/>
 		-->
-		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true"></layer>
+		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		<!--
 		<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
 		-->
@@ -449,6 +451,7 @@
 		<tool name="streetview" title="Google Street View" type="service" service="streetview" selectable="true"/>
 		<tool name="geocode" title="Geocode Address" type="service" service="geocode_address" selectable="true"/> 	
 
+		<!-- Layer TOOLS have been moved into the catalog. 
 		<drawer title="Layer Tools" icon-class="sprite-control sprite-control-markup_tools" show-label="true">
 			<tool name="draw_polygon" title="Add Polygon" type="layer" action="polygon" show-label="true"/>
 			<tool name="draw_line" title="Add Line" type="layer" action="line" show-label="true"/>
@@ -461,6 +464,7 @@
 				GeoMOOSE.saveChanges(GeoMOOSE.getActiveMapSource());
 			]]></tool>
 		</drawer>
+		-->
 
 		<tool name="buffered_select" title="Select Features" type="service" service="buffered_select" show-label="true"/>
 		<tool name="search_parcels" title="Search Parcels" type="service" service="search_parcels" selectable="false" show-label="true"/>
