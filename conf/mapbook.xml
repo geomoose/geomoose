@@ -52,7 +52,7 @@
 		The mapping services define the source of the mapping data.
 	-->
 
-	<map-source name="sketch" type="vector" active="true" status="on">
+	<map-source name="sketch" type="vector" active="true" status="on" activate="true" up="true" down="true" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true" title="Drawing and Markup">
 		<style type="stylemap"><![CDATA[
 		{
 			"label" : "${title}",
@@ -110,19 +110,21 @@
 	</map-source>
 
 	<!-- Demo of parcels as points. -->
-	<map-source name="parcel_points" type="mapserver">
+	<map-source name="parcel_points" type="mapserver" up="true" down="true" title="Parcel Points">
 		<file>./demo/parcels/parcels.map</file>
 		<layer name="parcel_points"/>
 		<param name="FORMAT" value="image/png; mode=8bit"/>
 	</map-source>
 
-	<map-source name="parcels" type="mapserver">
+	<map-source name="parcels" type="mapserver" up="true" down="true" title="Parcels">
 		<file>./demo/parcels/parcels.map</file>
 		<layer name="parcels" status="on"/>
 		<param name="FORMAT" value="image/png; mode=8bit"/>
 		<!-- this is used only for testing the group-functionality -->
+		<!--
 		<layer name="parcels_group"/>
 		<layer name="all"/>
+		-->
 	</map-source>
 	
 	<!-- 
@@ -134,7 +136,7 @@
 		<layer name="testing"/>
 	</map-source>
 
-	<map-source name="borders" type="mapserver" reference="true">
+	<map-source name="borders" type="mapserver" reference="true" up="true" down="true" title="City and County Borders">
 		<file>./demo/statedata/basemap.map</file>
 		<layer name="city_labels" status="on"/>
 		<layer name="county_labels" status="on"/>
@@ -203,7 +205,7 @@
 	</map-source>
 	-->
 
-	<map-source name="blank" type="wms" tiled="false">
+	<map-source name="blank" type="wms" tiled="false" display-in-catalog="false">
 		<url>./images/blank.gif</url>
 		<layer name="blank" status="on"/>
 	</map-source>
