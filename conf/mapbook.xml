@@ -104,8 +104,10 @@
 		<layer name="parcels" status="on"/>
 		<param name="FORMAT" value="image/png; mode=8bit"/>
 		<!-- this is used only for testing the group-functionality -->
+		<!--
 		<layer name="parcels_group"/>
 		<layer name="all"/>
+		-->
 	</map-source>
 	
 	<!-- 
