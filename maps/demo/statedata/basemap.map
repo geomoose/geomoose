@@ -42,13 +42,21 @@ MAP
 		   WIDTH 3
 		   COLOR 210 210 210
 		 END
+		 MAXSCALE 1000000
+	      END
+	      CLASS
+	      	STYLE
+			WIDTH	20
+			COLOR 0 0 0
+		END
+		MINSCALE 1000000
 	      END
 	END # County Boundary Polygon Layer
 
 	LAYER # City Boundary Polygon Layer
 	      NAME city_poly
 	      DATA './muni'
-	      STATUS DEFAULT
+	      STATUS ON 
 	      TYPE POLYGON
 	      MAXSCALE 1000000
 	      MINSCALE 1000
@@ -87,7 +95,7 @@ MAP
 	LAYER # City Boundary Polygon Layer
 	    NAME city_labels
 	    DATA './muni'
-	    STATUS DEFAULT
+	    STATUS ON 
 	    TYPE annotation
 	    #MAXSCALE 100000
 	    MINSCALE 500
@@ -111,7 +119,7 @@ MAP
 	LAYER
 	    NAME 'county_labels'
 	    DATA './county'
-	    STATUS DEFAULT
+	    STATUS ON 
 	    TYPE ANNOTATION
 	    MINSCALE 1000
 	    SYMBOLSCALE 200000
