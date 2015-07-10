@@ -36,6 +36,10 @@ MAP
 	    TYPE LINE
 	    MINSCALE 1000
 	    SYMBOLSCALE 200000
+	      PROJECTION
+	      	"init=epsg:26915"
+	      END
+
 	      CLASS
 		 NAME "County Boundary"
 		 STYLE
@@ -50,6 +54,10 @@ MAP
 			COLOR 0 0 0
 		END
 		MINSCALE 1000000
+	      END
+
+	      METADATA
+	      	'fido_record' 'county_fido_template.html'
 	      END
 	END # County Boundary Polygon Layer
 
@@ -114,6 +122,14 @@ MAP
 		BUFFER 2
 	       END
 	     END
+
+	      PROJECTION
+	      	"init=epsg:26915"
+	      END
+	      METADATA
+	      	"fido_record" "city_fido_template.html"
+	      END
+
 	END # City Boundary Polygon Layer
 
 	LAYER
