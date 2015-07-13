@@ -185,7 +185,7 @@
 		<file>./demo/wms/lmic.map</file>
 		<layer name="met10"/>
 	</map-source>
-	<!--
+
 	<map-source name="google_physical" type="google" google-type="physical">
 		<layer name="all"/>
 	</map-source>
@@ -201,7 +201,6 @@
 	<map-source name="google_satellite" type="google" google-type="satellite">
 		<layer name="all"/>
 	</map-source>
-	-->
 
 	<map-source name="blank" type="wms" tiled="false" display-in-catalog="false">
 		<url>./images/blank.gif</url>
