@@ -113,16 +113,18 @@
 	<map-source name="parcel_points" type="mapserver" up="true" down="true" title="Parcel Points">
 		<file>./demo/parcels/parcels.map</file>
 		<layer name="parcel_points"/>
-		<param name="FORMAT" value="image/png; mode=8bit"/>
+		<param name="FORMAT" value="image/png"/>
 	</map-source>
 
 	<map-source name="parcels" type="mapserver" up="true" down="true" title="Parcels">
 		<file>./demo/parcels/parcels.map</file>
 		<layer name="parcels" status="on"/>
-		<param name="FORMAT" value="image/png; mode=8bit"/>
+		<param name="FORMAT" value="image/png"/>
 		<!-- this is used only for testing the group-functionality -->
+		<!--
 		<layer name="parcels_group"/>
 		<layer name="all"/>
+		-->
 	</map-source>
 	
 	<!-- 
