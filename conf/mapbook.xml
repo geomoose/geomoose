@@ -416,7 +416,7 @@
 		</group>
 
 		<group title="Backgrounds" expand="true" multiple="false">
-			<layer title="Reprojected Regional Aerial" src="lmic/met10" legend="false" fade="false" unfade="false"/>
+			<layer title="Reprojected Regional Aerial" src="lmic/met10" show-legend="false" legend="false" fade="false" unfade="false"/>
 
 			<layer title="Google Streets" src="google_streets/all" legend="false" fade="false" unfade="false"/>
 			<layer title="Google Physical" src="google_physical/all" legend="false" fade="false" unfade="false"/>
@@ -427,9 +427,9 @@
 			<layer title="MapQuest Satellite Tiles" src="mapquest2/sat" legend="false" fade="false" unfade="false"/>
 
 
-			<layer title="USGS DOQs" src="usgs/DOQ" legend="false" fade="false" unfade="false"/>
-			<layer title="USGS Topo Quads" src="usgs/DRG" legend="false" fade="false" unfade="false"/>
-			<layer title="ArcGIS 9.3 Rest Example" src="ags/NatGeo_World_Map" legend="false" fade="false" unfade="false"/>
+			<layer title="USGS DOQs" src="usgs/DOQ" show-legend="false" legend="false" fade="false" unfade="false"/>
+			<layer title="USGS Topo Quads" src="usgs/DRG" show-legend="false" legend="false" fade="false" unfade="false"/>
+			<layer title="ArcGIS 9.3 Rest Example" src="ags/NatGeo_World_Map" show-legend="false" legend="false" fade="false" unfade="false"/>
 			<layer title="None" src="blank/blank" legend="false" fade="false" unfade="false"/>
 		</group>
 	</catalog>
