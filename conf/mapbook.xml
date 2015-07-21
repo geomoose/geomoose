@@ -138,8 +138,8 @@
 
 	<map-source name="borders" type="mapserver" reference="true" up="true" down="true" title="City and County Borders" fido-search="true">
 		<file>./demo/statedata/basemap.map</file>
-		<layer name="city_labels" status="on"/>
-		<layer name="county_labels" status="on"/>
+	<!--	<layer name="city_labels" status="on"/>
+		<layer name="county_labels" status="on"/> -->
 		<layer name="city_poly" status="on"/>
 		<layer name="county_borders" status="on"/>
 	</map-source>
