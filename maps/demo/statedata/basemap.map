@@ -33,9 +33,12 @@ MAP
 	    NAME 'county_borders'
 	    DATA './county'
 	    STATUS ON
-	    TYPE LINE
+	    TYPE POLYGON
 	    MINSCALE 1000
 	    SYMBOLSCALE 200000
+	    LABELITEM 'COUNTYNAME'
+            LABELMAXSCALE 500000
+            LABELCACHE ON
 	      PROJECTION
 	      	"init=epsg:26915"
 	      END
@@ -44,15 +47,39 @@ MAP
 		 NAME "County Boundary"
 		 STYLE
 		   WIDTH 3
-		   COLOR 210 210 210
+		   OUTLINECOLOR 210 210 210
 		 END
+		 LABEL
+	            TYPE TRUETYPE
+	            FONT vera_sans-bold
+	            FORCE TRUE
+	            MINSIZE 8
+	            SIZE 10
+	            MAXSIZE 12
+	            # ANTIALIAS TRUE
+	            COLOR 0 0 0
+	            OUTLINECOLOR 232 232 232
+	            BUFFER 4
+	          END
 		 MAXSCALE 1000000
 	      END
 	      CLASS
 	      	STYLE
-			WIDTH	20
-			COLOR 0 0 0
+		   WIDTH	20
+		   OUTLINECOLOR 0 0 0
 		END
+		LABEL
+	            TYPE TRUETYPE
+	            FONT vera_sans-bold
+	            FORCE TRUE
+	            MINSIZE 8
+	            SIZE 10
+	            MAXSIZE 12
+	            # ANTIALIAS TRUE
+	            COLOR 0 0 0
+	            OUTLINECOLOR 232 232 232
+	            BUFFER 4
+	          END
 		MINSCALE 1000000
 	      END
 
@@ -68,99 +95,61 @@ MAP
 	      TYPE POLYGON
 	      MAXSCALE 1000000
 	      MINSCALE 1000
+	      LABELITEM 'MUNI_NAME'
+              LABELMAXSCALE 100000
+             #  LABELCACHE ON
 		CLASS
 			NAME 'Cities'
 			EXPRESSION ("[MUN_ID]" ~ "..[135].*")
 			STYLE
 				COLOR "#A9B5A3"
 			END
+			LABEL
+		            TYPE TRUETYPE
+		            FONT vera_sans
+		            MAXSIZE 10
+		            MINSIZE 7
+		            ANTIALIAS TRUE
+		            COLOR 0 0 0
+		            OUTLINECOLOR 254 254 254
+		            BUFFER 2
+           		END
 		END
 		CLASS
 			EXPRESSION ("[MUN_ID]" ~ "..[246].*")
 			STYLE
 				COLOR "#54B524"
 			END
+			LABEL
+		            TYPE TRUETYPE
+		            FONT vera_sans
+		            MAXSIZE 10
+		            MINSIZE 7
+		            ANTIALIAS TRUE
+		            COLOR 0 0 0
+		            OUTLINECOLOR 254 254 254
+		            BUFFER 2
+		        END
 		END
 		CLASS
 			EXPRESSION ("[MUN_ID]" ~ "..[7890].*")
 			STYLE
 				COLOR "#6DB548"
 			END
+			LABEL
+		            TYPE TRUETYPE
+		            FONT vera_sans
+		            MAXSIZE 10
+		            MINSIZE 7
+		            ANTIALIAS TRUE
+		            COLOR 0 0 0
+		            OUTLINECOLOR 254 254 254
+		            BUFFER 2
+		        END
 		END
 		OPACITY 50
 
-
-
-	      
-#	        STYLE
-#	          SYMBOL 'dashed2'
-#	          SIZE 3
-#	          COLOR 64 255 100
-#               END
-#	      END
 	END # City Boundary Polygon Layer
-
-	LAYER # City Boundary Polygon Layer
-	    NAME city_labels
-	    DATA './muni'
-	    STATUS ON 
-	    TYPE annotation
-	    #MAXSCALE 100000
-	    MINSCALE 500
-	    LABELITEM 'MUNI_NAME'
-	    LABELCACHE ON
-	     CLASS
-	       COLOR -1 -1 -1
-	       LABEL
-		TYPE TRUETYPE
-		FONT vera_sans
-		MAXSIZE 10
-		MINSIZE 7
-		ANTIALIAS TRUE
-		COLOR 0 0 0
-		OUTLINECOLOR 254 254 254
-		BUFFER 2
-	       END
-	     END
-
-	      PROJECTION
-	      	"init=epsg:26915"
-	      END
-	      METADATA
-	      	"fido_record" "city_fido_template.html"
-	      END
-
-	END # City Boundary Polygon Layer
-
-	LAYER
-	    NAME 'county_labels'
-	    DATA './county'
-	    STATUS ON 
-	    TYPE ANNOTATION
-	    MINSCALE 1000
-	    SYMBOLSCALE 200000
-	    LABELMAXSCALE 2000000
-	    LABELMINSCALE 100000
-	    LABELITEM 'COUNTYNAME'
-	    LABELCACHE ON
-	    CLASS
-	      STYLE
-		COLOR -1 -1 -1
-	      END
-	      LABEL
-		TYPE TRUETYPE
-		FONT vera_sans-bold
-		FORCE TRUE
-		MINSIZE 8
-		SIZE 10
-		MAXSIZE 12
-		# ANTIALIAS TRUE
-		COLOR 0 0 0
-		OUTLINECOLOR 232 232 232
-		BUFFER 4
-	      END
-	    END
-	END
-
+	
 END ## end Map
 
