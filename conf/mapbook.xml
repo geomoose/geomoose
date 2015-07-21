@@ -430,7 +430,7 @@
 			<layer title="USGS DOQs" src="usgs/DOQ" show-legend="false" legend="false" fade="false" unfade="false"/>
 			<layer title="USGS Topo Quads" src="usgs/DRG" show-legend="false" legend="false" fade="false" unfade="false"/>
 			<layer title="ArcGIS 9.3 Rest Example" src="ags/NatGeo_World_Map" show-legend="false" legend="false" fade="false" unfade="false"/>
-			<layer title="None" src="blank/blank" legend="false" fade="false" unfade="false"/>
+			<layer title="None" src="blank/blank" show-legend="false" legend="false" fade="false" unfade="false"/>
 		</group>
 	</catalog>
 
