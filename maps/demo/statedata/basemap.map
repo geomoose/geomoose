@@ -148,6 +148,10 @@ MAP
 				END
 		END
 		OPACITY 50
+		METADATA
+			'fido_record' 'city_fido_template.html'
+		END
+
 	END # City Boundary Polygon Layer
 
 END ## end Map
