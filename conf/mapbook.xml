@@ -121,9 +121,9 @@
 		<layer name="parcels" status="on"/>
 		<param name="FORMAT" value="image/png"/>
 		<!-- this is used only for testing the group-functionality -->
-		<!--
 		<layer name="parcels_group"/>
 		<layer name="all"/>
+		<!--
 		-->
 	</map-source>
 	
@@ -349,7 +349,7 @@
 
 
 	<service name="search_parcels" title="Search" clear-highlight="true">
-		<url>php/query.php</url>
+		<url>php/query2.php</url>
 		<step type="input">
 			<help-text><![CDATA[
 			The options below can be used to find parcels with different attributes. Enjoy!
