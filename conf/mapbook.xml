@@ -75,6 +75,18 @@
 		<attribute name="label_only" type="checkbox" default-value="false" label="Only show label in print?"/>
 	</map-source>
 
+	<map-source name="vector_highlight" type="geojson" status="off">
+		<style type="stylemap"><![CDATA[
+		{
+			"strokeColor" : "#ffff00",
+			"strokeOpacity" : 1.0,
+			"fillColor" : "#ffff00",
+			"fillOpacity" : 0.25
+		}
+		]]></style>
+		<url></url>
+	</map-source>
+
 	<map-source name="census_cities" type="wfs"> 
 		<style type="stylemap"><![CDATA[
 		{
@@ -401,6 +413,7 @@
 		<!-- Layer for testing international character support. 
 		<layer title="Test International Characters" src="international/testing"/>
 		-->
+		<layer title="Test GeoJSON" src="test_geojson"/>
 		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		<!--
 		<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
