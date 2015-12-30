@@ -75,6 +75,18 @@
 		<attribute name="label_only" type="checkbox" default-value="false" label="Only show label in print?"/>
 	</map-source>
 
+	<map-source name="vector_highlight" type="geojson" status="off">
+		<style type="stylemap"><![CDATA[
+		{
+			"strokeColor" : "#ffff00",
+			"strokeOpacity" : 1.0,
+			"fillColor" : "#ffff00",
+			"fillOpacity" : 0.25
+		}
+		]]></style>
+		<url></url>
+	</map-source>
+
 	<map-source name="census_cities" type="wfs"> 
 		<style type="stylemap"><![CDATA[
 		{
@@ -121,9 +133,9 @@
 		<layer name="parcels" status="on"/>
 		<param name="FORMAT" value="image/png"/>
 		<!-- this is used only for testing the group-functionality -->
-		<!--
 		<layer name="parcels_group"/>
 		<layer name="all"/>
+		<!--
 		-->
 	</map-source>
 	
@@ -299,29 +311,37 @@
 	</service>
 
 	<service name="buffered_select" title="Select Features" clear-highlight="true">
-		<url>php/select.php</url>
+		<url>php/query2.php</url>
 
 		<!-- Send a selection shape + the visible layers list to the service -->
-		<step type="spatial" show-tools="true" name="shape" line="true" polygon="true" point="true" default="polygon" edit-polygon="true" pan="true">
+		<step type="spatial" show-tools="true" name="shape0" line="true" polygon="true" point="true" default="polygon" edit-polygon="true" pan="true">
 
 			<header><![CDATA[Create a selection area by clicking on the map.]]></header>
 
+			<!--
 			<input type="visiblelayers" name="layers"/>
+			-->
+			<input type="hidden" name="mode" value="search"/>
+			<!-- caching must be turned on to allow for mailing labels to work -->
+			<input type="hidden" name="cache" value="true"/>
+			<input type="hidden" name="header0" value="select_header"/>
+			<input type="hidden" name="footer0" value="select_footer"/>
+			<input type="hidden" name="template0" value="select_record"/>
 
 			<!-- 
 				Option values should be the mapbook path to the layer.
 				This only supports 'mapserver'-type layers.
 			-->
-			<input type="select" name="select_layer" title="Select features from:">
+			<input type="select" name="layer0" title="Select features from:">
 				<option value="parcels/parcels">Parcels</option>
 			</input>
 			
-			<input type="length" name="selection_buffer" title="Buffer Selection Shape by">0</input>
-			<input type="select" name="query_layer" title="Using Features In">
+			<input type="length" name="shape0_buffer" title="Buffer Selection Shape by">0</input>
+			<input type="select" name="shape0_layer" title="Using Features In">
 				<option value="">No Layer</option>
 				<option value="parcels/parcels">Parcels</option>
 			</input>
-			<input type="length" name="shape_buffer" title="Buffer Features by">0</input>
+			<input type="length" name="shape0_layer_buffer" title="Buffer Features by">0</input>
 			<input type="projection" name="projection"/>
 
 			<footnote><![CDATA[
@@ -349,7 +369,7 @@
 
 
 	<service name="search_parcels" title="Search" clear-highlight="true">
-		<url>php/query.php</url>
+		<url>php/query2.php</url>
 		<step type="input">
 			<help-text><![CDATA[
 			The options below can be used to find parcels with different attributes. Enjoy!
@@ -393,6 +413,7 @@
 		<!-- Layer for testing international character support. 
 		<layer title="Test International Characters" src="international/testing"/>
 		-->
+		<layer title="Test GeoJSON" src="test_geojson"/>
 		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		<!--
 		<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
