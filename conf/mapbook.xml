@@ -413,7 +413,6 @@
 		<!-- Layer for testing international character support. 
 		<layer title="Test International Characters" src="international/testing"/>
 		-->
-		<layer title="Test GeoJSON" src="test_geojson"/>
 		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		<!--
 		<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
