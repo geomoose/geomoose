@@ -106,6 +106,7 @@ MAP
 
 	      		'select_record'	'templates/select_result.html'
 			'select_header' 'templates/select_header.html'
+			'select_footer' 'templates/select_footer.html'
 			'popups' 'parcels_popup.html'
 
 		END
