@@ -117,7 +117,7 @@
 
 	<map-source name="highlight" type="mapserver">
 		<file/>
-		<layer name="highlight"/>
+		<layer name="highlight" status="off"/>
 		<param name="TRANSPARENT" value="TRUE"/>
 	</map-source>
 
@@ -311,7 +311,7 @@
 	</service>
 
 	<service name="buffered_select" title="Select Features" clear-highlight="true">
-		<url>php/query2.php</url>
+		<url>php/query.php</url>
 
 		<!-- Send a selection shape + the visible layers list to the service -->
 		<step type="spatial" show-tools="true" name="shape0" line="true" polygon="true" point="true" default="polygon" edit-polygon="true" pan="true">
@@ -369,7 +369,7 @@
 
 
 	<service name="search_parcels" title="Search" clear-highlight="true">
-		<url>php/query2.php</url>
+		<url>php/query.php</url>
 		<step type="input">
 			<help-text><![CDATA[
 			The options below can be used to find parcels with different attributes. Enjoy!
@@ -413,7 +413,6 @@
 		<!-- Layer for testing international character support. 
 		<layer title="Test International Characters" src="international/testing"/>
 		-->
-		<layer title="Test GeoJSON" src="test_geojson"/>
 		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		<!--
 		<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
