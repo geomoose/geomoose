@@ -87,7 +87,7 @@
 		<url></url>
 	</map-source>
 
-	<map-source name="census_cities" type="wfs"> 
+	<map-source name="census_cities" type="wfs" active="true" srs="EPSG:4269"> 
 		<style type="stylemap"><![CDATA[
 		{
 			"strokeColor" : "#00ff00",
@@ -415,7 +415,7 @@
 		-->
 		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		<!--
-		<layer title="Census Cities - WFS" src="census_cities" activate="true" fade="false" unfade="false" metadata="false" legend="false"></layer> 
+		<layer title="Census Cities"  activate="true" src="census_cities" fade="false" unfade="false" metadata="false" legend="false" draw-point="false" draw-line="false" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		-->
 		<group title="Overlays">
 
