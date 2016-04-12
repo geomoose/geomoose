@@ -44,9 +44,7 @@
 		}
 	]]></param>	
 
-		<param name="popups.clearOnMove">false</param>
 		<param name="services.tools.select_feature.status">true</param>
-
 	</configuration>
 	<!--
 		The mapping services define the source of the mapping data.
