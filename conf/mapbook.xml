@@ -63,6 +63,9 @@
 		<attribute name="title" type="user" default-value="" label="Feature Label:"/>
 		<attribute name="line_color" type="color" default-value="#ff0000" label="Stroke Color:"/>
 		<attribute name="fill_color" type="color" default-value="#ff0000" label="Fill Color:"/>
+		<attribute name="test_ajax_select" type="ajax_select" default_value="0" label="Ajax Select:">
+			<url>/geomoose/php/optionsList.php</url>
+		</attribute>
 		<!--
 		<attribute name="opacity" type="select" default-value="100" label="Opacity (%):"/>
 		<attribute name="line_opacity" type="select" default-value="100" label="Stroke Opacity (%):"/>
@@ -133,9 +136,9 @@
 		<layer name="parcels" status="on"/>
 		<param name="FORMAT" value="image/png"/>
 		<!-- this is used only for testing the group-functionality -->
+		<!--
 		<layer name="parcels_group"/>
 		<layer name="all"/>
-		<!--
 		-->
 	</map-source>
 	
@@ -233,6 +236,7 @@
 
 			<input type="user" name="title" title="Map Title">Map</input>
 			<input type="hidden" name="date" title="Map Date">true</input>
+			<input type="hidden" name="legends">true</input>
 
 			<input type="select" name="template" title="Output Template: ">
 				<option value="letter_landscape">Letter - Landscape</option>
