@@ -62,7 +62,7 @@
 		<attribute name="line_color" type="color" default-value="#ff0000" label="Stroke Color:"/>
 		<attribute name="fill_color" type="color" default-value="#ff0000" label="Fill Color:"/>
 		<attribute name="test_ajax_select" type="ajax_select" default_value="0" label="Ajax Select:">
-			<url>/geomoose/php/optionsList.php</url>
+			<url>php/optionsList.php</url>
 		</attribute>
 		<!--
 		<attribute name="opacity" type="select" default-value="100" label="Opacity (%):"/>
@@ -423,13 +423,13 @@
 
 			<group title="County Layers" expand="false">
 
-				<layer src="parcels/parcels" metadata="true" legend="true" tip="this a parcel layer, y'all" show-legend="true" popups="true">
+				<layer src="parcels/parcels" metadata="true" legend="true" tip="this a parcel layer, y'all" popups="true">
 					<metadata>http://www.geomoose.org/docs/</metadata>
 					<!--
 					<legend>images/logo_mini.gif</legend>
 					-->
 				</layer>
-				<layer title="Parcel Points" src="parcel_points/parcel_points" popups="true" minscale="6000" maxscale="20000">
+				<layer title="Parcel Points" src="parcel_points/parcel_points" popups="true" minscale="6000" maxscale="20000" status="on">
 				</layer>
 				<layer title="City and County Boundaries" src="borders/city_labels:borders/county_labels:borders/county_borders:borders/city_poly"/>
 			</group>
