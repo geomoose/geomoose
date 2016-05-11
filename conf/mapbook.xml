@@ -96,7 +96,7 @@
 		}
 		]]></style>
 
-		<url>/mapserver/cgi-bin/tinyows</url>
+		<url>/cgi-bin/tinyows</url>
 
 		<attribute name="geoid10" type="user" label="ID:" default-value="27999"/>
 		<attribute name="namelsad10" type="user" label="Name:"/>
@@ -115,6 +115,31 @@
                 <a href="https://www.census.gov/2010census/popmap/ipmtext.php?fl=${statefp}:${geoid}" target="_blank">Census Info Page</a>
                 ]]></popup-template>
 	</map-source>
+
+	<!--
+	<map-source name="minnesota_places" type="wfs" active="true" srs="EPSG:4326">
+		<style type="stylemap"><![CDATA[
+		{
+			"strokeColor" : "#00ff00",
+			"label" : "${name}"
+		}
+		]]></style>
+
+		<url>/cgi-bin/tinyows</url>
+
+		<attribute name="geoid" type="user" label="ID:" default-value="27999"/>
+		<attribute name="name" type="user" label="Name:"/>
+
+		<feature-namespace>http://geomoose.org/</feature-namespace>
+		<feature-type>minnesota_places</feature-type>
+		<geometry-name>geom</geometry-name>
+		<schema><![CDATA[http://localhost/mapserver/cgi-bin/tinyows?service=WFS&version=1.1.0&request=DescribeFeatureType&typename=census:census_places]]></schema>
+
+		<filter type="cql"><![CDATA[geoid = 2746924]]></filter>
+	</map-source>
+	-->
+
+
 
 	<map-source name="highlight" type="mapserver">
 		<file/>
@@ -423,6 +448,10 @@
 		<layer title="Test International Characters" src="international/testing"/>
 		-->
 		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
+		
+		<!--
+		<layer title="Minnesota Places"  activate="true" src="minnesota_places" fade="false" unfade="false" metadata="false" legend="false" draw-point="false" draw-line="false" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
+		-->
 		<!--
 		<layer title="Census Cities"  activate="true" src="census_cities" fade="false" unfade="false" metadata="false" legend="false" draw-point="false" draw-line="false" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		-->
@@ -477,7 +506,7 @@
 		<tool name="measurearea" title="Measure Area" type="internal" action="measurearea"/>
 		<tool name="print" title="Print" type="service" service="print" selectable="false" icon-class="sprite-control sprite-control-printer"/>
 
-		<tool name="identify" title="Identify" type="service" service="identify" cursor="url(./cursors/identify2.gif) 9 9,url(./cursors/identify2.cur),help"/>
+		<tool name="identify" title="Identify" type="service" service="identify"/>
 
 <!--		<tool name="select" title="Select" type="service" service="select"/> -->
 		<tool name="birdseye" title="Bird's Eye View" type="service" selectable="true" service="birdseye"/>
