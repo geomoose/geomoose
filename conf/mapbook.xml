@@ -301,14 +301,21 @@
 
 	<!-- this is called after a standard select in order to buffer the previous selection -->
 	<service name="buffered_select_followup" title="Buffered Select" clear-highlight="true">
-		<url>php/select.php</url>
+		<url>php/query.php</url>
 		<step type="input">
-			<input type="hidden" name="shape"/>
-			<input type="hidden" name="select_layer"/>
-			<input type="hidden" name="query_layer"/>
-			<input type="hidden" name="selection_buffer"/>
-			<input type="length" name="shape_buffer" title="Buffer Features By: "/>
-			<input type="projection" name="projection"/>
+			<input type="hidden" name="shape0"/>
+			<input type="hidden" name="shape0_layer"/>
+			<input type="hidden" name="layer0"/>
+			<input type="hidden" name="shape0_buffer"/>
+			<input type="hidden" name="projection" value="EPSG:4326"/>
+
+
+			<input type="hidden" name="mode" value="search"/>
+			<input type="hidden" name="cache" value="true"/>
+			<input type="hidden" name="header0" value="select_header"/>
+			<input type="hidden" name="footer0" value="select_footer"/>
+			<input type="hidden" name="template0" value="select_record"/>
+			<input type="length" name="shape0_layer_buffer" title="Buffer Features By: "/>
 		</step>
 	</service>
 
