@@ -1,0 +1,48 @@
+MAP
+	UNITS METERS 
+
+	INCLUDE "../../geomoose_globals.map"
+
+	WEB
+		METADATA
+			'ows_title' "scalebar"
+			'ows_srs' 'EPSG:4326 EPSG:900913 EPSG:3857'
+			'ows_enable_request' '*'
+			'ows_onlineresource' 'http://www.geomoose.org'
+		END
+	END
+
+	PROJECTION
+		'init=epsg:3857'
+	END
+ 
+	SCALEBAR 
+		STATUS embed 
+		SIZE 200 5
+		UNITS kilometers 
+		BACKGROUNDCOLOR 120 120 120 
+		imagecolor 255 255 255  
+		COLOR 0 0 0
+		STYLE 0 
+		POSTLABELCACHE true 
+		TRANSPARENT OFF
+
+		LABEL 
+			COLOR 0 0 0
+			BUFFER 2 
+			OUTLINECOLOR 255 255 217
+			SIZE small 
+		END 
+	END 
+
+	# Dummy layer to call for displaying the scalebar
+	#   in WMS
+	LAYER
+		NAME "scalebar"
+		STATUS ON
+		TYPE polygon 
+		CLASS
+		END
+	END
+
+END

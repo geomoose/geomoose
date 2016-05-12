@@ -147,6 +147,26 @@
 		<param name="TRANSPARENT" value="TRUE"/>
 	</map-source>
 
+	<map-source name="scalebar_miles" type="mapserver" title="Scalebar Miles">
+		<file>./demo/scalebars/scalebar_miles.map</file>
+		<layer name="scalebar"/>
+		<param name="FORMAT" value="image/png"/>
+	</map-source>
+
+
+	<map-source name="scalebar_feet" type="mapserver" title="Scalebar Feet">
+		<file>./demo/scalebars/scalebar_feet.map</file>
+		<layer name="scalebar"/>
+		<param name="FORMAT" value="image/png"/>
+	</map-source>
+
+
+	<map-source name="scalebar_kilometers" type="mapserver" title="Scalebar Kilometers">
+		<file>./demo/scalebars/scalebar_kilometers.map</file>
+		<layer name="scalebar"/>
+		<param name="FORMAT" value="image/png"/>
+	</map-source>
+
 	<!-- Demo of parcels as points. -->
 	<map-source name="parcel_points" type="mapserver" up="true" down="true" title="Parcel Points">
 		<file>./demo/parcels/parcels.map</file>
@@ -471,6 +491,12 @@
 			</group>
 
 			<layer title="Weather Radar" src="iastate/nexrad-n0r" />
+		</group>
+
+		<group title="Scalebars" expand="false">
+			<layer src="scalebar_miles/scalebar" legend="false" show-legend="false" fade="false" unfade="false"/>
+			<layer src="scalebar_feet/scalebar" legend="false" show-legend="false" fade="false" unfade="false"/>
+			<layer src="scalebar_kilometers/scalebar" legend="false" show-legend="false" fade="false" unfade="false"/>
 		</group>
 
 		<group title="Backgrounds" expand="true" multiple="false">
