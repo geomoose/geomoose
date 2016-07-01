@@ -108,9 +108,9 @@ MAP
 			# Feature reports are stored in the conf/feature_report directory.
 			# 'feature_report' 'parcel.xml'
 
-	      		# 'select_record'	'templates/select_result.html'
-			# 'select_header' 'templates/select_header.html'
-			# 'select_footer' 'templates/select_footer.html'
+	      		'select_record'	'pipelines_select_record.html'
+			'select_header' 'pipelines_select_header.html'
+			'select_footer' 'pipelines_select_footer.html'
 			# 'popups' 'pipelines_popup.html'
 
 		END
