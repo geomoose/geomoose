@@ -424,7 +424,7 @@
 	</service>
 
 	<service name="geocode_address" title="Geocode Address">
-		<url>php/geocode.php</url>
+		<url>php/google_geocoder.php</url>
 		<step type="input">
 			<input type="user" name="address" title="Enter Address: "/>
 			<input type="hidden" name="googlekey" value="ABQIAAAA4Q-VLyIpwp3L8M9DIzKb2BT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRe8Hd6FR51Hvb-Fvd-wGjiDZDC4w"/>
