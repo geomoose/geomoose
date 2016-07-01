@@ -116,7 +116,6 @@
                 ]]></popup-template>
 	</map-source>
 
-	<!--
 	<map-source name="minnesota_places" type="wfs" active="true" srs="EPSG:4326">
 		<style type="stylemap"><![CDATA[
 		{
@@ -129,6 +128,9 @@
 
 		<attribute name="geoid" type="user" label="ID:" default-value="27999"/>
 		<attribute name="name" type="user" label="Name:"/>
+		<attribute name="lsad" type="ajax_select" label="Place Type:">
+			<url>php/getFeatureTypes.php</url>
+		</attribute>
 
 		<feature-namespace>http://geomoose.org/</feature-namespace>
 		<feature-type>minnesota_places</feature-type>
@@ -137,8 +139,6 @@
 
 		<filter type="cql"><![CDATA[geoid = 2746924]]></filter>
 	</map-source>
-	-->
-
 
 
 	<map-source name="highlight" type="mapserver">
@@ -167,6 +167,12 @@
 		<param name="FORMAT" value="image/png"/>
 	</map-source>
 
+	<map-source name="pipelines" type="mapserver" title="Pipelines">
+		<file>./demo/pipelines/pipelines.map</file>
+		<layer name="pipelines" status="off"/>
+		<param name="FORMAT" value="image/png"/>
+	</map-source>
+
 	<!-- Demo of parcels as points. -->
 	<map-source name="parcel_points" type="mapserver" up="true" down="true" title="Parcel Points">
 		<file>./demo/parcels/parcels.map</file>
@@ -184,6 +190,8 @@
 		<layer name="all"/>
 		-->
 	</map-source>
+
+
 	
 	<!-- 
 	 * This map-source is used solely for testing geomose 
@@ -388,6 +396,8 @@
 			-->
 			<input type="select" name="layer0" title="Select features from:">
 				<option value="parcels/parcels">Parcels</option>
+				<option value="pipelines/pipelines">Pipelines</option>
+				<option value="parcel_points/parcel_points">Parcel Points</option>
 			</input>
 			
 			<input type="length" name="shape0_buffer" title="Buffer Selection Shape by">0</input>
@@ -469,13 +479,12 @@
 		-->
 		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		
-		<!--
 		<layer title="Minnesota Places"  activate="true" src="minnesota_places" fade="false" unfade="false" metadata="false" legend="false" draw-point="false" draw-line="false" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
-		-->
 		<!--
 		<layer title="Census Cities"  activate="true" src="census_cities" fade="false" unfade="false" metadata="false" legend="false" draw-point="false" draw-line="false" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		-->
 		<group title="Overlays">
+			<layer src="pipelines/pipelines"></layer>
 
 			<group title="County Layers" expand="false">
 
