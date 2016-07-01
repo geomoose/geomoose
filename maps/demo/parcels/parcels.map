@@ -140,8 +140,29 @@ MAP
 
 		TOLERANCE 10
 		TEMPLATE "parcels_popup.html"
-		MINSCALEDENOM 6000
-		MAXSCALEDENOM 20000
+
+		METADATA
+			# drill-down identify service record.
+	      		'identify_record'	'templates/identify.html'
+
+			# query.php / "Search Parcels" functionality.
+			'itemquery'	'templates/search_result.html'
+			'itemquery-filter'	'/.*[qstring].*/i' 
+			'qstring_validation_pattern' '.'
+			
+			# Feature reports are stored in the conf/feature_report directory.
+			'feature_report' 'parcel.xml'
+
+	      		'select_record'	'templates/select_result.html'
+			'select_header' 'templates/select_header.html'
+			'select_footer' 'templates/select_footer.html'
+			'popups' 'parcels_popup.html'
+
+		END
+
+
+		#MINSCALEDENOM 6000
+		#MAXSCALEDENOM 20000
 	END
   
 END ## end Map
