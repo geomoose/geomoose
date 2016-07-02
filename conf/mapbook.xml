@@ -423,11 +423,14 @@
 		</step>
 	</service>
 
+	<!--
+	  -  To use the Google Geocoder you will need to define a 
+	  -  Google API key in local_settings.ini
+	-->
 	<service name="geocode_address" title="Geocode Address">
 		<url>php/google_geocoder.php</url>
 		<step type="input">
 			<input type="user" name="address" title="Enter Address: "/>
-			<input type="hidden" name="googlekey" value="ABQIAAAA4Q-VLyIpwp3L8M9DIzKb2BT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRe8Hd6FR51Hvb-Fvd-wGjiDZDC4w"/>
 		</step>
 	</service>
 
@@ -546,6 +549,10 @@
 <!--		<tool name="select" title="Select" type="service" service="select"/> -->
 		<tool name="birdseye" title="Bird's Eye View" type="service" selectable="true" service="birdseye"/>
 		<tool name="streetview" title="Google Street View" type="service" service="streetview" selectable="true"/>
+		<!--
+		  -  The Geocoder will not work until google_api_key has been defined
+		  -   in local_settings.ini.
+		-->
 		<tool name="geocode" title="Geocode Address" type="service" service="geocode_address" selectable="true"/> 	
 
 		<tool name="buffered_select" title="Select Features" type="service" service="buffered_select" show-label="true"/>
