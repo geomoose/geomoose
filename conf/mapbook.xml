@@ -224,24 +224,26 @@
 		<param name="FORMAT" value="png"/>
 	</map-source>
 
-	<map-source name="mapquest" type="xyz">
-		<layer name="osm" />
-		<url>http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
-		<url>http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
-		<url>http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
-		<url>http://otile4.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
+	<map-source name="openstreetmap" type="xyz">
+		<layer name="osm_mapnik" />
+		<url>http://a.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
+		<url>http://b.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
+		<url>http://c.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
 	</map-source>
-
-
-	<map-source name="mapquest2" type="xyz">
-		<layer name="sat" />
-		<url>http://oatile1.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
-		<url>http://oatile2.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
-		<url>http://oatile3.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
-		<url>http://oatile4.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
+	
+	<map-source name="wmflabs" type="xyz">
+		<layer name="osm_black_n_white" />
+		<url>http://a.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
+		<url>http://b.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
+		<url>http://c.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
 	</map-source>
-
-
+	
+	<map-source name="thunderforest" type="xyz">
+		<layer name="osm_cycle_map" />
+		<url>http://a.tile.thunderforest.com/cycle/${z}/${x}/${y}.png</url>
+		<url>http://b.tile.thunderforest.com/cycle/${z}/${x}/${y}.png</url>
+		<url>http://c.tile.thunderforest.com/cycle/${z}/${x}/${y}.png</url>
+	</map-source>
 
 	<map-source name="usgs" type="mapserver">
 		<file>./demo/wms/usgs.map</file>
@@ -519,10 +521,10 @@
 			<layer title="Google Hybrid" src="google_hybrid/all" legend="false" fade="false" unfade="false"/>
 			<layer title="Google Satellite" src="google_satellite/all" legend="false" fade="false" unfade="false"/>
 
-			<layer title="MapQuest OSM" src="mapquest/osm" legend="false" fade="false" unfade="false"/>
-			<layer title="MapQuest Satellite Tiles" src="mapquest2/sat" legend="false" fade="false" unfade="false"/>
-
-
+			<layer title="OpenStreetMap - Mapnik" src="openstreetmap/osm_mapnik" legend="false" fade="false" unfade="false"/>
+			<layer title="OpenStreetMap - Black and White" src="wmflabs/osm_black_n_white" legend="false" fade="false" unfade="false"/>
+			<layer title="OpenStreetMap - Cycle Map" src="thunderforest/osm_cycle_map" legend="false" fade="false" unfade="false"/>
+			
 			<layer title="USGS DOQs" src="usgs/DOQ" show-legend="false" legend="false" fade="false" unfade="false"/>
 			<layer title="USGS Topo Quads" src="usgs/DRG" show-legend="false" legend="false" fade="false" unfade="false"/>
 			<layer title="ArcGIS 9.3 Rest Example" src="ags/NatGeo_World_Map" show-legend="false" legend="false" fade="false" unfade="false"/>
