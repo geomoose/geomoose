@@ -229,6 +229,7 @@
 		<url>http://a.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
 		<url>http://b.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
 		<url>http://c.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
+		<param name="attribution" value="Data and tiles by OpenStreetMap contributors"/>
 	</map-source>
 	
 	<map-source name="wmflabs" type="xyz">
@@ -236,14 +237,16 @@
 		<url>http://a.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
 		<url>http://b.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
 		<url>http://c.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
+		<param name="attribution" value="Data by OpenStreetMap contributors, Tiles by Wikimedia Foundation Labs"/>
 	</map-source>
 	
-	<map-source name="thunderforest" type="xyz">
+<!--	<map-source name="thunderforest" type="xyz">
 		<layer name="osm_cycle_map" />
 		<url>http://a.tile.thunderforest.com/cycle/${z}/${x}/${y}.png</url>
 		<url>http://b.tile.thunderforest.com/cycle/${z}/${x}/${y}.png</url>
 		<url>http://c.tile.thunderforest.com/cycle/${z}/${x}/${y}.png</url>
-	</map-source>
+		<param name="attribution" value="Data by OpenStreetMap contributors, Tiles by Thunderforest"/>
+	</map-source> -->
 
 	<map-source name="usgs" type="mapserver">
 		<file>./demo/wms/usgs.map</file>
@@ -523,7 +526,7 @@
 
 			<layer title="OpenStreetMap - Mapnik" src="openstreetmap/osm_mapnik" legend="false" fade="false" unfade="false"/>
 			<layer title="OpenStreetMap - Black and White" src="wmflabs/osm_black_n_white" legend="false" fade="false" unfade="false"/>
-			<layer title="OpenStreetMap - Cycle Map" src="thunderforest/osm_cycle_map" legend="false" fade="false" unfade="false"/>
+	<!--		<layer title="OpenStreetMap - Cycle Map" src="thunderforest/osm_cycle_map" legend="false" fade="false" unfade="false"/> -->
 			
 			<layer title="USGS DOQs" src="usgs/DOQ" show-legend="false" legend="false" fade="false" unfade="false"/>
 			<layer title="USGS Topo Quads" src="usgs/DRG" show-legend="false" legend="false" fade="false" unfade="false"/>
