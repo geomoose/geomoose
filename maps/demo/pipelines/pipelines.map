@@ -1,4 +1,4 @@
-# Copyright (c) 2009-2012, Dan "Ducky" Little & GeoMOOSE.org
+# Copyright (c) 2009-2016, Dan "Ducky" Little & GeoMOOSE.org
 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,11 @@ MAP
 	STATUS ON
 	EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
 
-	UNITS METERS
-
 	INCLUDE "../../geomoose_globals.map"
 
 	WEB
 		METADATA
-			'ows_title' 'Parcel Maps'
+			'ows_title' 'Piplines'
 			'ows_srs' 'EPSG:26915 EPSG:4326 EPSG:900913 EPSG:3857'
 			'ows_enable_request' '*'
 			'ows_onlineresource' 'http://www.geomoose.org'
@@ -38,7 +36,7 @@ MAP
 	END
 
 	PROJECTION
-		'init=epsg:26915'
+		'init=epsg:32165'
 	END
 
 	LEGEND
@@ -52,33 +50,33 @@ MAP
 	END	
   
   	LAYER
-		NAME parcels
-		DATA './parcels.shp'
-		GROUP parcels_group
+		NAME pipelines
+		DATA './pipelines_blm.shp'
+		GROUP pipelines_group
 		STATUS ON
-		TYPE POLYGON
-		LABELITEM 'PIN'
+		TYPE LINE 
+		LABELITEM 'name'
 		LABELCACHE ON
 		LABELMAXSCALE 20000
-		FILTER ([PARC_CODE] == 1)
+
 
 		PROJECTION
-			'init=epsg:26915'
+			'init=epsg:32165'
 		END
 
 		CLASS
-			NAME 'Parcels'
+			NAME 'Pipelines'
 			STYLE
 				WIDTH 3
-				COLOR -1 -1 -1
-				OUTLINECOLOR 93 181 53
-				MAXSCALEDENOM 15000
+				COLOR "#4894FF"
+				#MAXSCALEDENOM 15000
 			END
-			STYLE
-				SIZE 1
-				COLOR -1 -1 -1
-				OUTLINECOLOR 33 106 43
-			END
+
+			#STYLE
+			#	SIZE 1
+			#	COLOR -1 -1 -1
+			#	OUTLINECOLOR 33 106 43
+			#END
 
 			LABEL
 				TYPE TRUETYPE
@@ -94,76 +92,33 @@ MAP
 			END
 		END
 
+		TOLERANCEUNITS FEET 
+		TOLERANCE 1000
 
 
 		METADATA
 			# drill-down identify service record.
-	      		'identify_record'	'templates/identify.html'
+	      		'identify_record'	'pipelines_identify.html'
 
 			# query.php / "Search Parcels" functionality.
-			'itemquery'	'templates/search_result.html'
-			'itemquery-filter'	'/.*[qstring].*/i' 
+			# 'itemquery'	'templates/search_result.html'
+			# 'itemquery-filter'	'/.*[qstring].*/i' 
 			'qstring_validation_pattern' '.'
 			
 			# Feature reports are stored in the conf/feature_report directory.
-			'feature_report' 'parcel.xml'
+			# 'feature_report' 'parcel.xml'
 
-	      		'select_record'	'templates/select_result.html'
-			'select_header' 'templates/select_header.html'
-			'select_footer' 'templates/select_footer.html'
-			'popups' 'parcels_popup.html'
+	      		'select_record'	'pipelines_select_record.html'
+			'select_header' 'pipelines_select_header.html'
+			'select_footer' 'pipelines_select_footer.html'
+			# 'popups' 'pipelines_popup.html'
 
 		END
-		TOLERANCE 0
 
 		# this is required for WMS popups.
-		TEMPLATE "parcels_popup.html"
+		# TEMPLATE "pipelines_popup.html"
 
   	  END
 
- 
-  	LAYER
-		NAME parcel_points
-		GROUP parcel_points
-		DATA './parcel_points.shp'
-		STATUS OFF
-		TYPE POINT 
-		CLASS
-			NAME 'Parcels Points'
-			STYLE
-				SYMBOL 'circle'
-				SIZE 10
-				COLOR 255 0 0
-				OUTLINECOLOR 0 0 0
-			END
-		END
-
-		TOLERANCE 10
-		TEMPLATE "parcels_popup.html"
-
-		METADATA
-			# drill-down identify service record.
-	      		'identify_record'	'templates/identify.html'
-
-			# query.php / "Search Parcels" functionality.
-			'itemquery'	'templates/search_result.html'
-			'itemquery-filter'	'/.*[qstring].*/i' 
-			'qstring_validation_pattern' '.'
-			
-			# Feature reports are stored in the conf/feature_report directory.
-			'feature_report' 'parcel.xml'
-
-	      		'select_record'	'templates/select_result.html'
-			'select_header' 'templates/select_header.html'
-			'select_footer' 'templates/select_footer.html'
-			'popups' 'parcels_popup.html'
-
-		END
-
-
-		#MINSCALEDENOM 6000
-		#MAXSCALEDENOM 20000
-	END
-  
 END ## end Map
 

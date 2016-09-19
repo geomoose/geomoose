@@ -116,7 +116,6 @@
                 ]]></popup-template>
 	</map-source>
 
-	<!--
 	<map-source name="minnesota_places" type="wfs" active="true" srs="EPSG:4326">
 		<style type="stylemap"><![CDATA[
 		{
@@ -129,6 +128,9 @@
 
 		<attribute name="geoid" type="user" label="ID:" default-value="27999"/>
 		<attribute name="name" type="user" label="Name:"/>
+		<attribute name="lsad" type="ajax_select" label="Place Type:">
+			<url>php/getFeatureTypes.php</url>
+		</attribute>
 
 		<feature-namespace>http://geomoose.org/</feature-namespace>
 		<feature-type>minnesota_places</feature-type>
@@ -137,8 +139,6 @@
 
 		<filter type="cql"><![CDATA[geoid = 2746924]]></filter>
 	</map-source>
-	-->
-
 
 
 	<map-source name="highlight" type="mapserver">
@@ -167,6 +167,12 @@
 		<param name="FORMAT" value="image/png"/>
 	</map-source>
 
+	<map-source name="pipelines" type="mapserver" title="Pipelines">
+		<file>./demo/pipelines/pipelines.map</file>
+		<layer name="pipelines" status="off"/>
+		<param name="FORMAT" value="image/png"/>
+	</map-source>
+
 	<!-- Demo of parcels as points. -->
 	<map-source name="parcel_points" type="mapserver" up="true" down="true" title="Parcel Points">
 		<file>./demo/parcels/parcels.map</file>
@@ -184,6 +190,8 @@
 		<layer name="all"/>
 		-->
 	</map-source>
+
+
 	
 	<!-- 
 	 * This map-source is used solely for testing geomose 
@@ -216,24 +224,29 @@
 		<param name="FORMAT" value="png"/>
 	</map-source>
 
-	<map-source name="mapquest" type="xyz">
-		<layer name="osm" />
-		<url>http://otile1.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
-		<url>http://otile2.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
-		<url>http://otile3.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
-		<url>http://otile4.mqcdn.com/tiles/1.0.0/osm/${z}/${x}/${y}.png</url>
+	<map-source name="openstreetmap" type="xyz">
+		<layer name="osm_mapnik" />
+		<url>http://a.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
+		<url>http://b.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
+		<url>http://c.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
+		<param name="attribution" value="Data and tiles by OpenStreetMap contributors"/>
 	</map-source>
-
-
-	<map-source name="mapquest2" type="xyz">
-		<layer name="sat" />
-		<url>http://oatile1.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
-		<url>http://oatile2.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
-		<url>http://oatile3.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
-		<url>http://oatile4.mqcdn.com/tiles/1.0.0/sat/${z}/${x}/${y}.png</url>
+	
+	<map-source name="wmflabs" type="xyz">
+		<layer name="osm_black_n_white" />
+		<url>http://a.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
+		<url>http://b.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
+		<url>http://c.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
+		<param name="attribution" value="Data by OpenStreetMap contributors, Tiles by Wikimedia Foundation Labs"/>
 	</map-source>
-
-
+	
+<!--	<map-source name="thunderforest" type="xyz">
+		<layer name="osm_cycle_map" />
+		<url>http://a.tile.thunderforest.com/cycle/${z}/${x}/${y}.png</url>
+		<url>http://b.tile.thunderforest.com/cycle/${z}/${x}/${y}.png</url>
+		<url>http://c.tile.thunderforest.com/cycle/${z}/${x}/${y}.png</url>
+		<param name="attribution" value="Data by OpenStreetMap contributors, Tiles by Thunderforest"/>
+	</map-source> -->
 
 	<map-source name="usgs" type="mapserver">
 		<file>./demo/wms/usgs.map</file>
@@ -388,6 +401,8 @@
 			-->
 			<input type="select" name="layer0" title="Select features from:">
 				<option value="parcels/parcels">Parcels</option>
+				<option value="pipelines/pipelines">Pipelines</option>
+				<option value="parcel_points/parcel_points">Parcel Points</option>
 			</input>
 			
 			<input type="length" name="shape0_buffer" title="Buffer Selection Shape by">0</input>
@@ -413,11 +428,14 @@
 		</step>
 	</service>
 
+	<!--
+	  -  To use the Google Geocoder you will need to define a 
+	  -  Google API key in local_settings.ini
+	-->
 	<service name="geocode_address" title="Geocode Address">
-		<url>php/geocode.php</url>
+		<url>php/google_geocoder.php</url>
 		<step type="input">
 			<input type="user" name="address" title="Enter Address: "/>
-			<input type="hidden" name="googlekey" value="ABQIAAAA4Q-VLyIpwp3L8M9DIzKb2BT2yXp_ZAY8_ufC3CFXhHIE1NvwkxRe8Hd6FR51Hvb-Fvd-wGjiDZDC4w"/>
 		</step>
 	</service>
 
@@ -469,13 +487,12 @@
 		-->
 		<layer title="Drawing and Markup" activate="true" src="sketch" fade="false" unfade="false" metadata="false" legend="false" draw-point="true" draw-line="true" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		
-		<!--
 		<layer title="Minnesota Places"  activate="true" src="minnesota_places" fade="false" unfade="false" metadata="false" legend="false" draw-point="false" draw-line="false" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
-		-->
 		<!--
 		<layer title="Census Cities"  activate="true" src="census_cities" fade="false" unfade="false" metadata="false" legend="false" draw-point="false" draw-line="false" draw-polygon="true" edit-attributes="true" edit-shape="true" remove-feature="true" remove-all-features="true" buffer="true"></layer>
 		-->
 		<group title="Overlays">
+			<layer src="pipelines/pipelines"></layer>
 
 			<group title="County Layers" expand="false">
 
@@ -507,10 +524,10 @@
 			<layer title="Google Hybrid" src="google_hybrid/all" legend="false" fade="false" unfade="false"/>
 			<layer title="Google Satellite" src="google_satellite/all" legend="false" fade="false" unfade="false"/>
 
-			<layer title="MapQuest OSM" src="mapquest/osm" legend="false" fade="false" unfade="false"/>
-			<layer title="MapQuest Satellite Tiles" src="mapquest2/sat" legend="false" fade="false" unfade="false"/>
-
-
+			<layer title="OpenStreetMap - Mapnik" src="openstreetmap/osm_mapnik" legend="false" fade="false" unfade="false"/>
+			<layer title="OpenStreetMap - Black and White" src="wmflabs/osm_black_n_white" legend="false" fade="false" unfade="false"/>
+	<!--		<layer title="OpenStreetMap - Cycle Map" src="thunderforest/osm_cycle_map" legend="false" fade="false" unfade="false"/> -->
+			
 			<layer title="USGS DOQs" src="usgs/DOQ" show-legend="false" legend="false" fade="false" unfade="false"/>
 			<layer title="USGS Topo Quads" src="usgs/DRG" show-legend="false" legend="false" fade="false" unfade="false"/>
 			<layer title="ArcGIS 9.3 Rest Example" src="ags/NatGeo_World_Map" show-legend="false" legend="false" fade="false" unfade="false"/>
@@ -537,6 +554,10 @@
 <!--		<tool name="select" title="Select" type="service" service="select"/> -->
 		<tool name="birdseye" title="Bird's Eye View" type="service" selectable="true" service="birdseye"/>
 		<tool name="streetview" title="Google Street View" type="service" service="streetview" selectable="true"/>
+		<!--
+		  -  The Geocoder will not work until google_api_key has been defined
+		  -   in local_settings.ini.
+		-->
 		<tool name="geocode" title="Geocode Address" type="service" service="geocode_address" selectable="true"/> 	
 
 		<tool name="buffered_select" title="Select Features" type="service" service="buffered_select" show-label="true"/>
