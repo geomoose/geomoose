@@ -33,7 +33,8 @@ MAP
 			'ows_srs' 'EPSG:26915 EPSG:4326 EPSG:900913 EPSG:3857'
 			'ows_enable_request' '*'
 			'ows_onlineresource' 'http://www.geomoose.org'
-			'wms_feature_info_mime_type' 'text/html'
+			#'wms_feature_info_mime_type' 'text/html'
+			'wms_feature_info_mime_type' 'application/json'
 		END
 	END
 
@@ -113,6 +114,9 @@ MAP
 			'select_footer' 'templates/select_footer.html'
 			'popups' 'parcels_popup.html'
 
+			'wfs_onlineresource' 'http://geomoose.org/parcels'
+			'wfs_enable_request' '*'
+			'gml_include_items' 'all'
 		END
 		TOLERANCE 0
 
