@@ -26,8 +26,6 @@
 		<param name="layer_controls.legend.on">false</param>
 		<param name="layer_controls.metadata.on">false</param>		
 		<param name="layer_controls.legend.on">true</param>	
-
-		<param name="group_checkboxes">false</param>
 	      
 		<param name="ground_units">m</param>
 		<param name="maxResolution">156543.03390625</param>
