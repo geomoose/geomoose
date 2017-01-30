@@ -1,13 +1,40 @@
-	FONTSET 	"../../fonts/fontset.list"
-	SYMBOLSET	"../../symbols/symbol.sym"
+# A convienent place to setup a bunch of defaults for MapServer
+# so they don't need to be set in every mapfile.
 
-	# prevent the pink screen of death on large monitors
-	MAXSIZE 10000
+STATUS ON   # Draw map, not just scalebar
+SIZE 800 650 # Set default image size if not set in URL
 
-	#TRANSPARENT TRUE
+# Setup paths to fonts and symbols
+# Note: path is (oddly) relative to top level mapfile not this include
+#       This implies all your mapfiles need to be exactly two levels deep.
+FONTSET		"../../fonts/fontset.list"
+SYMBOLSET	"../../symbols/symbol.sym"
 
-	# IE6 is dead. Microsoft says so, Google says so, Facebook says so, I say so.
-	# http://www.ie6countdown.com/
-	IMAGETYPE png8 #agg/png
-	
-	IMAGECOLOR 255 255 255
+MAXSIZE 10000 # prevent the pink screen of death on large monitors
+IMAGECOLOR 255 255 255
+
+# Setup Basic OGC Services
+WEB
+	INCLUDE "../../temp_directory.map"
+	METADATA
+		"ows_enable_request"  "*"
+		"wms_srs" "EPSG:4326 EPSG:3857 EPSG:900913"
+		"ows_srs" "EPSG:4326"
+		'wms_feature_info_mime_type' 'application/json'
+	END
+END
+
+UNITS METERS
+PROJECTION
+	"init=epsg:3875"
+END
+
+LEGEND
+	STATUS ON
+	LABEL
+		TYPE TRUETYPE
+		FONT vera_sans
+		SIZE 8
+		COLOR 0 0 0
+	END
+END

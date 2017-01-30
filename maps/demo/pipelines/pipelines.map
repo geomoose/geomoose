@@ -19,64 +19,43 @@
 # THE SOFTWARE.
 
 MAP
-	SIZE 800 650
-	STATUS ON
-	EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
-
 	INCLUDE "../../geomoose_globals.map"
+
+	NAME 'pipelines'
 
 	WEB
 		METADATA
-			'ows_title' 'Piplines'
-			'ows_srs' 'EPSG:26915 EPSG:4326 EPSG:900913 EPSG:3857'
-			'ows_enable_request' '*'
-			'ows_onlineresource' 'http://www.geomoose.org'
-			'wms_feature_info_mime_type' 'text/html'
+			'ows_title' 'Pipelines'
 		END
 	END
 
-	PROJECTION
-		'init=epsg:32165'
-	END
-
-	LEGEND
-	      STATUS ON
-	      LABEL
-		TYPE TRUETYPE
-		FONT vera_sans
-		SIZE 8
-		COLOR 0 0 0
-	      END		
-	END	
-  
-  	LAYER
-		NAME pipelines
-		DATA './pipelines_blm.shp'
-		GROUP pipelines_group
+	LAYER
+		NAME 'pipelines'
 		STATUS ON
-		TYPE LINE 
-		LABELITEM 'name'
-		LABELCACHE ON
-		LABELMAXSCALE 20000
 
+		METADATA
+			"ows_title" "Pipelines"
+			"ows_include_items" "all"
+			"gml_include_items" "all"
+		END
+
+		TYPE LINE
+		DATA './pipelines_blm.shp'
 
 		PROJECTION
 			'init=epsg:32165'
 		END
+
+		LABELITEM 'name'
+		LABELCACHE ON
+		LABELMAXSCALE 20000
 
 		CLASS
 			NAME 'Pipelines'
 			STYLE
 				WIDTH 3
 				COLOR "#4894FF"
-				#MAXSCALEDENOM 15000
 			END
-
-			#STYLE
-			#	SIZE 1
-			#	COLOR -1 -1 -1
-			#	OUTLINECOLOR 33 106 43
-			#END
 
 			LABEL
 				TYPE TRUETYPE
@@ -92,33 +71,6 @@ MAP
 			END
 		END
 
-		TOLERANCEUNITS FEET 
-		TOLERANCE 1000
-
-
-		METADATA
-			# drill-down identify service record.
-	      		'identify_record'	'pipelines_identify.html'
-
-			# query.php / "Search Parcels" functionality.
-			# 'itemquery'	'templates/search_result.html'
-			# 'itemquery-filter'	'/.*[qstring].*/i' 
-			'qstring_validation_pattern' '.'
-			
-			# Feature reports are stored in the conf/feature_report directory.
-			# 'feature_report' 'parcel.xml'
-
-	      		'select_record'	'pipelines_select_record.html'
-			'select_header' 'pipelines_select_header.html'
-			'select_footer' 'pipelines_select_footer.html'
-			# 'popups' 'pipelines_popup.html'
-
-		END
-
-		# this is required for WMS popups.
-		# TEMPLATE "pipelines_popup.html"
-
-  	  END
-
+		TEMPLATE 'dummy'
+	END
 END ## end Map
-
