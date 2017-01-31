@@ -1,17 +1,7 @@
 # A convienent place to setup a bunch of defaults for MapServer
 # so they don't need to be set in every mapfile.
 
-STATUS ON   # Draw map, not just scalebar
-SIZE 800 650 # Set default image size if not set in URL
 
-# Setup paths to fonts and symbols
-# Note: path is (oddly) relative to top level mapfile not this include
-#       This implies all your mapfiles need to be exactly two levels deep.
-FONTSET		"../../fonts/fontset.list"
-SYMBOLSET	"../../symbols/symbol.sym"
-
-MAXSIZE 10000 # prevent the pink screen of death on large monitors
-IMAGECOLOR 255 255 255
 
 # Setup Basic OGC Services
 WEB
@@ -26,8 +16,25 @@ END
 
 UNITS METERS
 PROJECTION
-	"init=epsg:3875"
+	"init=epsg:3857"
 END
+EXTENT -20037508.3427892480 -20037508.3427892480 20037508.3427892480 20037508.3427892480
+
+
+STATUS ON   # Draw map, not just scalebar
+SIZE 800 650 # Set default image size if not set in URL
+
+CONFIG "MS_ERRORFILE" "stderr" # Log to apache error.log
+
+
+# Setup paths to fonts and symbols
+# Note: path is (oddly) relative to top level mapfile not this include
+#       This implies all your mapfiles need to be exactly two levels deep.
+FONTSET		"../../fonts/fontset.list"
+SYMBOLSET	"../../symbols/symbol.sym"
+
+MAXSIZE 10000 # prevent the pink screen of death on large monitors
+IMAGECOLOR 255 255 255
 
 LEGEND
 	STATUS ON

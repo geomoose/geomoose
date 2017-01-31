@@ -1,20 +1,10 @@
 MAP
 	INCLUDE "../../geomoose_globals.map"
 
-	NAME 'fire_stations'
-	
 	WEB
 		METADATA
 			"ows_title" "County Firestations"
-			#"ows_abstract" "..."
-			#"ows_keyword_list" "firestations"
-			#"ows_fees" "none"
-			#"ows_accessconstraints" "none"
-			#"ows_contactorganication" "Sample County, USA"
-			#"ows_contactperson" "..."
-			#"ows_contactposition" ..."
 		END
-
 	END
 
 	LAYER

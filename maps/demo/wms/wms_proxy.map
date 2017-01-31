@@ -1,0 +1,177 @@
+#
+# Reprojects a WMS service from native (UTM-15N) into projection used in GeoMoose
+# for integrating with multiple datasets.
+#
+
+MAP
+	INCLUDE "../../geomoose_globals.map"
+	
+	WEB
+		METADATA
+			'ows_title' 'Reprojection service for WMS layers'
+			'ows_enable_request' '!*' # WFS doesn't apply to this layer (raster only)
+			'wms_enable_request' '*'  # So only enable WMS
+		END
+	END
+
+	# State of Minnesota MnGeo Image Service
+	LAYER
+		NAME "mncomp"
+		STATUS ON
+
+		CONNECTION "http://geoint.lmic.state.mn.us/cgi-bin/mncomp?"
+		CONNECTIONTYPE WMS
+		TYPE RASTER
+
+		PROJECTION
+			"init=epsg:26915"
+		END
+		EXTENT -131108.4500000000116415 4505093.2500000000000000 994071.5500000000465661 5715117.7500000000000000
+		
+		METADATA
+			# MapServer as a WMS Server
+			"wms_title" "Minnesota Composite Imagery"
+
+			# MapServer as a WMS Client
+			"wms_srs" "EPSG:26915"
+			"wms_name" "mncomp"
+			"wms_server_version" "1.1.1"
+			"wms_format" "image/jpeg"
+		END
+	END
+
+	# USGS Topo Map Large Scale
+	LAYER
+		NAME "usgs_topo_large"
+		GROUP "usgs_topo"
+		STATUS ON
+
+		CONNECTION "https://services.nationalmap.gov/arcgis/services/USGSTopoLarge/MapServer/WMSServer?"
+		CONNECTIONTYPE WMS
+		TYPE RASTER
+
+		PROJECTION
+			"init=epsg:3857"
+		END
+
+		#EXTENT -19978292.563100 -2257063.321686 20025788.871700 11575302.023300
+		EXTENT -20037508.3427892480 -20037508.3427892480 20037508.3427892480 20037508.3427892480
+		
+		METADATA
+			# MapServer as a WMS Server
+			"wms_title" "USGS Topo Map (Large Scale)"
+			"wms_group_title" "USGS Topo Map"
+
+			# MapServer as a WMS Client
+			"wms_name"            "3,4,5,7,8,10,11,12,14,15,17,18,19,20,21,23,24,25,26,27,28,29,31,32,33,34,35,36,37,39,40,41,43,44,45,46,47"
+			"wms_srs"             "EPSG:3857"
+			"wms_server_version"  "1.1.1"
+			"wms_format"          "image/jpeg"
+			# Needed for ArcGIS WMS to avoid Parameters 'styles' and 'layers' should have the same number of values
+			"wms_force_separate_request" "1"
+		END
+
+		MAXSCALEDENOM 9000
+	END
+
+	# USGS Topo Map Small Scale
+	LAYER
+		NAME "usgs_topo_small"
+		GROUP "usgs_topo"
+		STATUS ON
+
+		CONNECTION "https://basemap.nationalmap.gov/arcgis/services/USGSTopo/MapServer/WMSServer?"
+		CONNECTIONTYPE WMS
+		TYPE RASTER
+
+		PROJECTION
+			"init=epsg:3857"
+		END
+
+		#EXTENT -20074053.901178 -30281451.060015 20074053.888922 30281451.072272
+		EXTENT -20037508.3427892480 -20037508.3427892480 20037508.3427892480 20037508.3427892480
+
+		METADATA
+			# MapServer as a WMS Server
+			"wms_title" "USGS Topo Map (Small Scale)"
+
+			# MapServer as a WMS Client
+			"wms_srs" "EPSG:3857"
+			"wms_name" "0"
+			"wms_server_version" "1.1.1"
+			"wms_format" "image/jpeg"
+			# Needed for ArcGIS WMS to avoid Parameters 'styles' and 'layers' should have the same number of values
+			"wms_force_separate_request" "1"
+		END
+
+		MINSCALEDENOM 9000
+	END
+
+	# USGS Imagery Large Scale
+	LAYER
+		NAME "usgs_imagery_large"
+		GROUP "usgs_imagery"
+		STATUS ON
+
+		CONNECTION "https://services.nationalmap.gov/arcgis/services/USGSImageOnlyLarge/MapServer/WMSServer?"
+		CONNECTIONTYPE WMS
+		TYPE RASTER
+
+		PROJECTION
+			"init=epsg:3857"
+		END
+
+		#EXTENT -17886629.271748 1504973.679600 16130518.764000 8715648.014400
+		EXTENT -20037508.3427892480 -20037508.3427892480 20037508.3427892480 20037508.3427892480
+		
+		METADATA
+			# MapServer as a WMS Server
+			"wms_title" "USGS Imagery (Large Scale)"
+			"wms_group_title" "USGS Imagery"
+
+			# MapServer as a WMS Client
+			"wms_name"            "2"
+			"wms_srs"             "EPSG:3857"
+			"wms_server_version"  "1.1.1"
+			"wms_format"          "image/jpeg"
+			# Needed for ArcGIS WMS to avoid Parameters 'styles' and 'layers' should have the same number of values
+			"wms_force_separate_request" "1"
+		END
+
+		MAXSCALEDENOM 9000
+	END
+
+	# USGS Imagery Small Scale
+	LAYER
+		NAME "usgs_imagery_small"
+		GROUP "usgs_imagery"
+		STATUS ON
+
+		CONNECTION "https://basemap.nationalmap.gov/arcgis/services/USGSImageryOnly/MapServer/WMSServer?"
+		CONNECTIONTYPE WMS
+		TYPE RASTER
+
+		PROJECTION
+			"init=epsg:3857"
+		END
+
+		#EXTENT -20037507.745623 -30240971.383326 20037507.733366 30240971.395582
+		EXTENT -20037508.3427892480 -20037508.3427892480 20037508.3427892480 20037508.3427892480
+
+		METADATA
+			# MapServer as a WMS Server
+			"wms_title" "USGS Imagery (Small Scale)"
+
+			# MapServer as a WMS Client
+			"wms_srs" "EPSG:3857"
+			"wms_name" "0"
+			"wms_server_version" "1.1.1"
+			"wms_format" "image/jpeg"
+			# Needed for ArcGIS WMS to avoid Parameters 'styles' and 'layers' should have the same number of values
+			"wms_force_separate_request" "1"
+		END
+
+		MINSCALEDENOM 9000
+	END
+END
+
