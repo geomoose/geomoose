@@ -1,11 +1,6 @@
 MAP
-	NAME 'basemap'
-	SIZE 800 650
-	STATUS ON
-	EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
-	UNITS METERS
-
 	INCLUDE "../../geomoose_globals.map"
+	NAME 'state_basemap'
 
 	WEB
 		METADATA
@@ -15,33 +10,29 @@ MAP
 		END
 	END
 
-	PROJECTION
-		'init=epsg:26915'
-	END
-
-	LEGEND
-		STATUS ON
-		LABEL
-			TYPE TRUETYPE
-			FONT vera_sans
-			SIZE 8
-			COLOR 0 0 0
-		END
-	END
-
 	LAYER # County Boundary Polygon Outline Layer
 		NAME 'county_borders'
-		DATA './county'
 		STATUS ON
+
+		METADATA
+			'ows_title' 'County Boundaries'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
 		TYPE POLYGON
-		MINSCALE 1000
-		SYMBOLSCALE 200000
-		LABELITEM 'COUNTYNAME'
-		LABELMAXSCALE 2000000
-		LABELCACHE ON
+		DATA './county'
+
 		PROJECTION
 			"init=epsg:26915"
 		END
+
+		MINSCALEDENOM 1000
+		LABELMAXSCALEDENOM 2000000
+		SYMBOLSCALEDENOM 200000
+
+		LABELCACHE ON
+		LABELITEM 'COUNTYNAME'
 
 		CLASS
 			NAME "County Boundary"
@@ -56,12 +47,12 @@ MAP
 				MINSIZE 8
 				SIZE 10
 				MAXSIZE 12
-				# ANTIALIAS TRUE
+
 				COLOR 0 0 0
 				OUTLINECOLOR 232 232 232
 				BUFFER 4
 			END
-			MAXSCALE 1000000
+			MAXSCALEDENOM 1000000
 		END
 		CLASS
 			STYLE
@@ -75,29 +66,39 @@ MAP
 				MINSIZE 8
 				SIZE 10
 				MAXSIZE 12
-				# ANTIALIAS TRUE
+
 				COLOR 0 0 0
 				OUTLINECOLOR 232 232 232
 				BUFFER 4
 			END
-			MINSCALE 1000000
+			MINSCALEDENOM 1000000
 		END
-
-		METADATA
-			'fido_record' 'county_fido_template.html'
-		END
+		TEMPLATE 'dummy'
 	END # County Boundary Polygon Layer
 
 	LAYER # City Boundary Polygon Layer
 		NAME city_poly
-		DATA './muni'
-		STATUS ON 
+		STATUS ON
+
+		METADATA
+			'ows_title' 'City Boundaries'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
+
 		TYPE POLYGON
-		MAXSCALE 1000000
-		MINSCALE 1000
+		DATA './muni'
+
+		PROJECTION
+			"init=epsg:26915"
+		END
+
+		MINSCALEDENOM 1000
+		MAXSCALEDENOM 1000000
+		LABELMAXSCALEDENOM 100000
+
 		LABELITEM 'MUNI_NAME'
-		# LABELMAXSCALE 100000
-		#  LABELCACHE ON
 		CLASS
 			NAME 'Cities'
 			EXPRESSION ("[MUN_ID]" ~ "..[135].*")
@@ -129,7 +130,7 @@ MAP
 				COLOR 0 0 0
 				OUTLINECOLOR 254 254 254
 				BUFFER 2
-				END
+			END
 		END
 		CLASS
 			EXPRESSION ("[MUN_ID]" ~ "..[7890].*")
@@ -145,14 +146,9 @@ MAP
 				COLOR 0 0 0
 				OUTLINECOLOR 254 254 254
 				BUFFER 2
-				END
+			END
 		END
 		OPACITY 50
-		METADATA
-			'fido_record' 'city_fido_template.html'
-		END
-
+		TEMPLATE 'dummy'
 	END # City Boundary Polygon Layer
-
 END ## end Map
-

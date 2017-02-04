@@ -1,21 +1,14 @@
 MAP
-	UNITS METERS 
-
 	INCLUDE "../../geomoose_globals.map"
-
+	
 	WEB
 		METADATA
 			'ows_title' "scalebar"
-			'ows_srs' 'EPSG:4326 EPSG:900913 EPSG:3857'
-			'ows_enable_request' '*'
-			'ows_onlineresource' 'http://www.geomoose.org'
+			'ows_enable_request' '!*'
+			'wms_enable_request' '*'
 		END
 	END
 
-	PROJECTION
-		'init=epsg:3857'
-	END
- 
 	SCALEBAR 
 		STATUS embed 
 		SIZE 200 5
@@ -35,14 +28,17 @@ MAP
 		END 
 	END 
 
-	# Dummy layer to call for displaying the scalebar
-	#   in WMS
+	# Dummy layer to call for displaying the scalebar in WMS
 	LAYER
-		NAME "scalebar"
+		NAME "scalebar_feet"
 		STATUS ON
-		TYPE polygon 
-		CLASS
+		TYPE polygon
+		PROJECTION
+			"init=epsg:4326"
+		END
+		METADATA
+			"wms_title" "Scalebar (Feet)"
+			"wms_extent" "-180 -80 180 80"
 		END
 	END
-
 END

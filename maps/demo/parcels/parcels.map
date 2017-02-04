@@ -1,71 +1,34 @@
-# Copyright (c) 2009-2012, Dan "Ducky" Little & GeoMOOSE.org
-
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-
-# The above copyright notice and this permission notice shall be included in
-# all copies or substantial portions of the Software.
-
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-# THE SOFTWARE.
-
 MAP
-	SIZE 800 650
-	STATUS ON
-	EXTENT  427632.500000 4893613.330000 560300.922104 5015936.680000
-
-	UNITS METERS
-
 	INCLUDE "../../geomoose_globals.map"
 
 	WEB
 		METADATA
 			'ows_title' 'Parcel Maps'
-			'ows_srs' 'EPSG:26915 EPSG:4326 EPSG:900913 EPSG:3857'
-			'ows_enable_request' '*'
-			'ows_onlineresource' 'http://www.geomoose.org'
-			#'wms_feature_info_mime_type' 'text/html'
-			'wms_feature_info_mime_type' 'application/json'
 		END
 	END
 
-	PROJECTION
-		'init=epsg:26915'
-	END
-
-	LEGEND
-	      STATUS ON
-	      LABEL
-		TYPE TRUETYPE
-		FONT vera_sans
-		SIZE 8
-		COLOR 0 0 0
-	      END		
-	END	
-  
-  	LAYER
-		NAME parcels
-		DATA './parcels.shp'
+	LAYER
+		NAME parcels_poly
 		GROUP parcels_group
 		STATUS ON
+
+		METADATA
+			'ows_title' 'Parcel Polygons'
+			'ows_include_items' 'all'
+			'gml_include_items' 'all'
+		END
+
 		TYPE POLYGON
-		LABELITEM 'PIN'
-		LABELCACHE ON
-		LABELMAXSCALE 20000
+		DATA './parcels.shp'
 		FILTER ([PARC_CODE] == 1)
 
 		PROJECTION
 			'init=epsg:26915'
 		END
+
+		LABELITEM 'PIN'
+		LABELCACHE ON
+		LABELMAXSCALE 20000
 
 		CLASS
 			NAME 'Parcels'
@@ -95,43 +58,27 @@ MAP
 			END
 		END
 
+		TEMPLATE 'dummy'
+	END
 
+	LAYER
+		NAME parcels_points
+		GROUP parcels_group
+		STATUS ON
 
 		METADATA
-			# drill-down identify service record.
-	      		'identify_record'	'templates/identify.html'
-
-			# query.php / "Search Parcels" functionality.
-			'itemquery'	'templates/search_result.html'
-			'itemquery-filter'	'/.*[qstring].*/i' 
-			'qstring_validation_pattern' '.'
-			
-			# Feature reports are stored in the conf/feature_report directory.
-			'feature_report' 'parcel.xml'
-
-	      		'select_record'	'templates/select_result.html'
-			'select_header' 'templates/select_header.html'
-			'select_footer' 'templates/select_footer.html'
-			'popups' 'parcels_popup.html'
-
-			'wfs_onlineresource' 'http://geomoose.org/parcels'
-			'wfs_enable_request' '*'
+			'ows_title' 'Parcel Points'
+			'ows_include_items' 'all'
 			'gml_include_items' 'all'
 		END
-		TOLERANCE 0
 
-		# this is required for WMS popups.
-		TEMPLATE "parcels_popup.html"
-
-  	  END
-
- 
-  	LAYER
-		NAME parcel_points
-		GROUP parcel_points
+		TYPE POINT
 		DATA './parcel_points.shp'
-		STATUS OFF
-		TYPE POINT 
+
+		PROJECTION
+			'init=epsg:26915'
+		END
+
 		CLASS
 			NAME 'Parcels Points'
 			STYLE
@@ -142,32 +89,7 @@ MAP
 			END
 		END
 
-		TOLERANCE 10
-		TEMPLATE "parcels_popup.html"
-
-		METADATA
-			# drill-down identify service record.
-	      		'identify_record'	'templates/identify.html'
-
-			# query.php / "Search Parcels" functionality.
-			'itemquery'	'templates/search_result.html'
-			'itemquery-filter'	'/.*[qstring].*/i' 
-			'qstring_validation_pattern' '.'
-			
-			# Feature reports are stored in the conf/feature_report directory.
-			'feature_report' 'parcel.xml'
-
-	      		'select_record'	'templates/select_result.html'
-			'select_header' 'templates/select_header.html'
-			'select_footer' 'templates/select_footer.html'
-			'popups' 'parcels_popup.html'
-
-		END
-
-
-		#MINSCALEDENOM 6000
-		#MAXSCALEDENOM 20000
+		TEMPLATE 'dummy'
 	END
-  
-END ## end Map
 
+END ## end Map

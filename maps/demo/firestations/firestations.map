@@ -1,0 +1,41 @@
+MAP
+	INCLUDE "../../geomoose_globals.map"
+
+	WEB
+		METADATA
+			"ows_title" "County Firestations"
+		END
+	END
+
+	LAYER
+		NAME 'fire_stations'
+		STATUS ON
+
+		METADATA
+			"ows_title" "Fire Stations"
+			"ows_include_items" "all"
+			"gml_include_items" "all"
+			"ows_exclude_items" "SHAPE_area,SHAPE_len"
+			"gml_exclude_items" "SHAPE_area,SHAPE_len"
+		END
+
+		TYPE POINT
+		DATA 'firestations'
+
+		PROJECTION
+			"init=epsg:26915"
+		END
+
+		CLASS
+			NAME 'Fire Stations'
+			STYLE
+				COLOR 254 0 0
+				SYMBOL "star"
+				SIZE 8
+			END
+		END
+
+		TEMPLATE 'dummy'
+	END
+
+END ## end Map
