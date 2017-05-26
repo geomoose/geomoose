@@ -209,7 +209,7 @@
 	</map-source>
 
 	<map-source name="iastate" type="wms">
-		<url>http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi?</url>
+		<url>https://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi?</url>
 		<layer name="nexrad-n0r"/>
 		<param name="FORMAT" value="image/png"/>
 		<param name="TRANSPARENT" value="TRUE"/>
@@ -217,21 +217,22 @@
 
 
 	<map-source name="ags" type="ags">
-		<url>http://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/export</url>
+		<url>https://services.arcgisonline.com/ArcGIS/rest/services/NatGeo_World_Map/MapServer/export</url>
 		<layer name="NatGeo_World_Map"/>
 		<param name="FORMAT" value="png"/>
 	</map-source>
 
 	<map-source name="openstreetmap" type="xyz">
 		<layer name="osm_mapnik" />
-		<url>http://a.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
-		<url>http://b.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
-		<url>http://c.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
+		<url>https://a.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
+		<url>https://b.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
+		<url>https://c.tile.openstreetmap.org/${z}/${x}/${y}.png</url>
 		<param name="attribution" value="Data and tiles by OpenStreetMap contributors"/>
 	</map-source>
 	
 	<map-source name="wmflabs" type="xyz">
 		<layer name="osm_black_n_white" />
+		<!-- Note: Layer not available over https as of 2017-05-25 -->
 		<url>http://a.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
 		<url>http://b.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
 		<url>http://c.tiles.wmflabs.org/bw-mapnik/${z}/${x}/${y}.png</url>
